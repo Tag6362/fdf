@@ -6,12 +6,11 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 11:42:14 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/10 11:40:05 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/19 18:01:22 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
-#include "includes/libft.h"
+#include "libft.h"
 
 int	ft_printer_s(char *str)
 {

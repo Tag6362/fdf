@@ -6,22 +6,23 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/19 17:41:25 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/19 19:10:33 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= fdf
-FTSRCS		= .c
-DIRSRCS 	= srcs/
-SRCS 		=	$(addsuffix ${FTSRCS},	\
-				$(addprefix ${DIRSRCS},	\
-				main \
-				))
+NAME			= fdf
+FTSRCS			= .c
+DIRSRCS 		= srcs/
+SRCS 			=	$(addsuffix ${FTSRCS},	\
+					$(addprefix ${DIRSRCS},	\
+					main \
+					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
-LIBFTLIB		= -lft.a
-MLXDIR			= minilibx-linux
-MLXLIBS			= -lX11 -lXext -lmlx
+LIBFTLIB		= -lft
+MLXDIR			= minilibx
+MLXLIB			= -lmlx
+XLIBS			= -lX11 -lXext 
 CC				= clang
 FLAGS			= -Wall -Wextra -Werror
 # OBJS			= ${SRCS:.c=.o}
@@ -31,12 +32,9 @@ NC				= \033[0m
 LGREEN			= \033[1;32m
 CYAN			= \033[0;36m
 
-.%.o: %.c
-	@echo "${CYAN}Compiling $<${NC}"
-	@${CC} ${FLAGS} -o $@ -c $^ -L${LIBDIR} -l${LIBNAME} ${INCLUDES}
-
-${NAME}: ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
-	${CC} ${SRCS} ${MLXDIR} ${MLXLIBS} ${LIBFTDIR} ${LIBFTLIB} -o $@
+# .%.o: %.c
+# 	@echo "${CYAN}Compiling $<${NC}"
+# 	@${CC} ${FLAGS} -o $@ -c $^ -L${LIBDIR} -l${LIBNAME} ${INCLUDES}
 
 all: ${NAME}
 	@echo '______________________________________________________          '
@@ -52,6 +50,9 @@ all: ${NAME}
 	@echo '          ______________________________________________________'
 	@echo '                                                  By tgernez	   '
 	@echo "${LGREEN}Successfully created${NC}${CYAN} ${NAME}${NC}${LGREEN}!${NC}"
+
+${NAME}: ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
+	${CC} ${SRCS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -o $@ 
 
 ${LIBFTDIR}/libft.a:
 	@make -C ${LIBFTDIR}

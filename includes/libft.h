@@ -19,6 +19,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdarg.h>
+# include <string.h>
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
@@ -98,5 +99,8 @@ int		ft_putnbr_ui_hexa_up(unsigned int nb, int *len);
 char	*get_next_line(int fd);
 int		ft_str_clean_nl(char *str);
 char	*ft_strdup_bool(char *s1, int malloced);
-
+size_t	ft_strlcpy_noconst(char *dst, char *src, size_t dstsize);
+char	*ft_strdup_bool(char *s1, int malloced);
+char	*ft_strdup_bool(char *s1, int malloced);
+char	*ft_strjoin_noconst(char *s1, char *s2);
 #endif

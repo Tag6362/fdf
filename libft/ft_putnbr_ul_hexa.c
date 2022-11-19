@@ -6,11 +6,11 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:52:59 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/08 14:08:23 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/19 19:07:08 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/ft_printf.h"
+#include "libft.h"
 
 static void	ft_hexa_writer(unsigned long nb, int i, int *len)
 {
@@ -37,3 +37,9 @@ int	ft_putnbr_ul_hexa(unsigned long nb)
 	ft_hexa_writer(nb, ft_len_nb_hexa(nb) - 1, &len);
 	return (len);
 }
+
+// int main(void)
+// {
+// 	ft_putnbr_ul_hexa(10);
+// 	return (0);
+// }

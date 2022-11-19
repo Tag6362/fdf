@@ -102,5 +102,5 @@ char	*ft_strdup_bool(char *s1, int malloced);
 size_t	ft_strlcpy_noconst(char *dst, char *src, size_t dstsize);
 char	*ft_strdup_bool(char *s1, int malloced);
 char	*ft_strdup_bool(char *s1, int malloced);
-
+char	*ft_strjoin_noconst(char *s1, char *s2);
 #endif

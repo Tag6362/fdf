@@ -6,11 +6,13 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/19 15:55:45 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/19 19:07:28 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "mlx.h"
+#include "libft.h"
+#include "fdf.h"
 
 int main(void)
 {
