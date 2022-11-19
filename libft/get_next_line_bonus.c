@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 15:22:02 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/19 17:42:28 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/19 17:50:21 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*get_next_line(int fd)
 		while (found == 0)
 		{
 			tmp = ft_readline(str[fd], &found, fd);
-			tmp2 = ft_strjoin(line, tmp);
+			tmp2 = ft_strjoin_noconst(line, tmp);
 			free(line);
 			line = ft_strdup_bool(tmp2, 1);
 			free(tmp);
@@ -61,7 +61,7 @@ char	*ft_readline(char *str, int *found, int fd)
 		*found = ((!bu[0]) || (!bu[i] && i < BUFFER_SIZE) || (bu[i] == '\n'));
 		if (bu[i] == '\n')
 		{
-			ft_strlcpy(str, bu, BUFFER_SIZE + 1);
+			ft_strlcpy_noconst(str, bu, BUFFER_SIZE + 1);
 			bu[i + 1] = '\0';
 		}
 		ft_str_clean_nl(str);
