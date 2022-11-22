@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/22 10:51:56 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/22 13:07:41 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ DIRSRCS 		= srcs/
 SRCS 			=	$(addsuffix ${FTSRCS},	\
 					$(addprefix ${DIRSRCS},	\
 					main \
+					events_window \
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
