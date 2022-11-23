@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/23 15:26:58 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/23 15:40:50 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,16 +59,18 @@ all: ${NAME}
 	@echo "${LGREEN}Successfully created${NC}${CYAN} ${NAME}${NC}${LGREEN}!${NC}"
 
 ${NAME}: ${OBJS} ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
-	${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o $@
+	@${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o $@
 
-sanitize: ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
-	${CC} ${SRCS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o $@ -g3 -fsanitize=address 
+sanitize: ${OBJS} ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
+	@${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o $@ -g3 -fsanitize=address 
 
 ${LIBFTDIR}/libft.a:
 	@make -C ${LIBFTDIR}
 
 ${MLXDIR}/libmlx.a:
 	@make -C ${MLXDIR}
+
+#----------------------------FDF
 
 clean:
 	@echo "${CYAN}Cleaned FdF${NC}"
@@ -78,8 +80,12 @@ fclean:		clean
 	@echo "${CYAN}FCleaned FdF${NC}"
 	@${RM} ${NAME}
 
-libft_re:
-	@make -C ${LIBFTDIR} re
+re: fclean all
+
+#----------------------------LIBFT
+
+libft_all:
+	@make -C ${LIBFTDIR} all
 
 libft_clean:
 	@make -C ${LIBFTDIR} clean
@@ -87,12 +93,11 @@ libft_clean:
 libft_fclean:
 	@make -C ${LIBFTDIR} fclean
 
-libft_all:
-	@make -C ${LIBFTDIR} all
 
-all_clean: clean libft_clean
+libft_re:
+	@make -C ${LIBFTDIR} re
 
-all_fclean: fclean libft_fclean
+#----------------------------MLX
 
 mlx_re:
 	@make -C ${LIBFTDIR} re
@@ -103,6 +108,8 @@ mlx_clean:
 mlx_all:
 	@make -C ${LIBFTDIR} all
 
+#----------------------------ALL
+
 all_clean: clean libft_clean mlx_clean
 
 all_fclean: fclean libft_fclean mlx_clean
@@ -110,6 +117,4 @@ all_fclean: fclean libft_fclean mlx_clean
 all_re: mlx_re libft_re fclean all
 	@echo "${CYAN}Re-ed FdF${NC}"
 
-re: fclean all
-
-.PHONY: all clean fclean re libft_re libft_all libft_fclean libft_clean libft_re 
+.PHONY: all clean fclean re libft_re libft_all libft_fclean libft_clean libft_re all_re all_fclean all_clean mlx_all mlx_clean mlx_re 
