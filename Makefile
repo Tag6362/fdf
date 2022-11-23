@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/22 13:07:41 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/23 15:26:58 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,10 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					$(addprefix ${DIRSRCS},	\
 					main \
 					events_window \
+					colors_1 \
+					colors_2 \
+					line_ploting \
+					parsing \
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
@@ -26,16 +30,18 @@ MLXLIB			= -lmlx
 XLIBS			= -lX11 -lXext 
 CC				= clang
 FLAGS			= -Wall -Wextra -Werror
-# OBJS			= ${SRCS:.c=.o}
+OBJS			= ${SRCS:.c=.o}
 RM				= rm -rf
-RED				= \033[0;31m
+RED				= \033[1;31m
 NC				= \033[0m
 LGREEN			= \033[1;32m
-CYAN			= \033[0;36m
+CYAN			= \033[1;36m
 
-# .%.o: %.c
-# 	@echo "${CYAN}Compiling $<${NC}"
-# 	@${CC} ${FLAGS} -o $@ -c $^ -L${LIBDIR} -l${LIBNAME} ${INCLUDES}
+%.o: %.c
+	@echo "\033[1A                                                         "
+	@echo -n "\033[1A"
+	@echo "${CYAN}Compiling $< ${NC}"
+	@${CC} ${FLAGS} -o $@ -c $^ ${INCLUDES}
 
 all: ${NAME}
 	@echo '_______________________________________________________          '
@@ -52,8 +58,11 @@ all: ${NAME}
 	@echo '                                                  By tgernez	    '
 	@echo "${LGREEN}Successfully created${NC}${CYAN} ${NAME}${NC}${LGREEN}!${NC}"
 
-${NAME}: ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
-	${CC} ${SRCS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -o $@ 
+${NAME}: ${OBJS} ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
+	${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o $@
+
+sanitize: ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
+	${CC} ${SRCS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o $@ -g3 -fsanitize=address 
 
 ${LIBFTDIR}/libft.a:
 	@make -C ${LIBFTDIR}

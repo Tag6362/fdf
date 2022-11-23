@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/22 13:35:32 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/23 15:00:05 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct	s_struct {
 	void	*img;
 	void	*addr;
 	int		bpp;
-	int		line_length;
+	int		line_len;
 	int		endian;
 }				t_data;
 
@@ -28,7 +28,24 @@ typedef struct	s_vars {
 	void	*win;
 }				t_vars;
 
-/* PROTOS */
+/* ---PROTOS--- */
+/* Main */
+
+/* Colors 1*/
+int create_trgb(int t, int r, int g, int b);
+int get_t(int trgb);
+int get_r(int trgb);
+int get_g(int trgb);
+int get_b(int trgb);
+
+/* Colors 2*/
+int add_shade(int trgb, float shade);
+int color_opposite(int color);
+
+/* Events Window */
 int mlx_close(int keycode, t_vars *vars);
-int mlx_close_mouse(t_vars *vars);
+
+/* Line Plotting */
+void plotLine(t_data img, int *p1, int *p2, int color);
+
 #endif
