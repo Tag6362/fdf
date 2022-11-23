@@ -6,26 +6,27 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:05:37 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/23 17:12:17 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/23 17:47:22 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	mlx_key_listener(int keycode, t_vars *vars)
+int	key_listener(int keycode, t_vars *vars)
 {
 	if (keycode == 65307)
-		mlx_destroy_window(vars->mlx, vars->win);
+		return (mlx_destroy_window(vars->mlx, vars->win), exit(0), 0);
 	return (0);
 }
 
-int mlx_on_destroy(t_vars *vars)
+int on_destroy(t_vars *vars)
 {
 	mlx_destroy_window(vars->mlx, vars->win);
+	exit(0);
 	return (0);
 }
 
-int mlx_on_mouse_down(int button, int x, int y, t_vars *vars)
+int on_mouse_down(int button, int x, int y, t_vars *vars)
 {
 	t_data		img;
 	static int	p1[2];

@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/23 17:12:36 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/23 17:23:44 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int add_shade(int trgb, float shade);
 int color_opposite(int color);
 
 /* Events Window */
-int mlx_key_listener(int keycode, t_vars *vars);
-int mlx_on_destroy(t_vars *vars);
-int mlx_on_mouse_down(int button, int x, int y, t_vars *vars);
+int key_listener(int keycode, t_vars *vars);
+int on_destroy(t_vars *vars);
+int on_mouse_down(int button, int x, int y, t_vars *vars);
 
 /* Line Plotting */
 void plotLine(t_data img, int *p1, int *p2, int color);

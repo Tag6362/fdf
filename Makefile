@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/23 15:40:50 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/23 17:50:16 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,7 @@ LGREEN			= \033[1;32m
 CYAN			= \033[1;36m
 
 %.o: %.c
-	@echo "\033[1A                                                         "
+	@echo "\033[1A                                                          "
 	@echo -n "\033[1A"
 	@echo "${CYAN}Compiling $< ${NC}"
 	@${CC} ${FLAGS} -o $@ -c $^ ${INCLUDES}
