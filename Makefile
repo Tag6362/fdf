@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/23 17:50:16 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/24 14:04:47 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					colors_2 \
 					line_ploting \
 					parsing \
+					memory \
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
