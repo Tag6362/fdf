@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/24 15:08:06 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/25 11:20:25 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct	s_vars {
 
 typedef struct	s_point {
 	int				alt;
-	unsigned int	color;
+	unsigned long	color;
 }				t_point;
 
 /* ---PROTOS--- */
@@ -65,5 +65,8 @@ void plotLine(t_data img, int *p1, int *p2, int color);
 
 /* Memory */
 void	**ft_free_strs(char **strs);
+void	**ft_free_map(t_point **map, unsigned int len); //FIXME
 
+/* ATOUL */
+unsigned long ft_atoul_hexa(const char *str);
 #endif

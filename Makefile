@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/24 14:04:47 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/25 11:21:44 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					line_ploting \
 					parsing \
 					memory \
+					ft_atoul_hexa
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
