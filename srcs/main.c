@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 19:48:43 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/25 22:27:28 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void grid_printing(t_data img)
 		p2[0] = i;
 		p2[1] = 0;
 		plot_line(img, p1, p2, 0x00FF0000);
-		i -= 100;
+		i -= 500;
 	}
 }
 
@@ -55,10 +55,23 @@ int main (void)
 	int p2[2];
 	int hyp;
 
-	hyp = 200;
-	p1[0] = 500;
+	hyp = 1000;
+	
+	p1[0] = 300;
 	printf("P1[0]:%d\n", p1[0]);
-	p1[1] = 700;
+	p1[1] = 300;
+	printf("P1[1]:%d\n", p1[1]);
+
+	p2[0] = p1[0] + cos(0.524) * hyp;
+	printf("P2[0]:%d\n", p2[0]);
+	p2[1] = p1[1] + sin(0.524) * hyp;
+	printf("P2[1]:%d\n", p2[1]);
+	plot_line(img, p1, p2, 0xFFFFFF);
+	printf("----------------------\n");
+	
+	p1[0] += 100;
+	printf("P1[0]:%d\n", p1[0]);
+	p1[1] -= 50;
 	printf("P1[1]:%d\n", p1[1]);
 
 	p2[0] = p1[0] + cos(0.524) * hyp;
@@ -68,36 +81,10 @@ int main (void)
 	plot_line(img, p1, p2, 0xFFFFFF);
 	printf("----------------------\n");
 
-	p1[0] = p2[0];
+	p1[0] += 100;
 	printf("P1[0]:%d\n", p1[0]);
-	p1[1] = p2[1];
+	p1[1] -= 50;
 	printf("P1[1]:%d\n", p1[1]);
-
-
-	p2[0] = p1[0] + cos(0.524) * hyp;
-	printf("P2[0]:%d\n", p2[0]);
-	p2[1] = p1[1] + sin(-0.524) * hyp;
-	printf("P2[1]:%d\n", p2[1]);
-	plot_line(img, p1, p2, 0xFFFFFF);
-	printf("----------------------\n");
-
-	p1[0] = 500;
-	printf("P1[0]:%d\n", p1[0]);
-	p1[1] = 700;
-	printf("P1[1]:%d\n", p1[1]);
-
-	p2[0] = p1[0] + cos(0.524) * hyp;
-	printf("P2[0]:%d\n", p2[0]);
-	p2[1] = p1[1] - sin(0.524) * hyp;
-	printf("P2[1]:%d\n", p2[1]);
-	plot_line(img, p1, p2, 0xFFFFFF);
-	printf("----------------------\n");
-
-	p1[0] = p2[0];
-	printf("P1[0]:%d\n", p1[0]);
-	p1[1] = p2[1];
-	printf("P1[1]:%d\n", p1[1]);
-
 
 	p2[0] = p1[0] + cos(0.524) * hyp;
 	printf("P2[0]:%d\n", p2[0]);
@@ -105,70 +92,48 @@ int main (void)
 	printf("P2[1]:%d\n", p2[1]);
 	plot_line(img, p1, p2, 0xFFFFFF);
 	printf("----------------------\n");
+
+	p1[0] += 100;
+	printf("P1[0]:%d\n", p1[0]);
+	p1[1] -= 50;
+	printf("P1[1]:%d\n", p1[1]);
+
+	p2[0] = p1[0] + cos(0.524) * hyp;
+	printf("P2[0]:%d\n", p2[0]);
+	p2[1] = p1[1] + sin(0.524) * hyp;
+	printf("P2[1]:%d\n", p2[1]);
+	plot_line(img, p1, p2, 0xFFFFFF);
+	printf("----------------------\n");
+
+	p1[0] += 100;
+	printf("P1[0]:%d\n", p1[0]);
+	p1[1] -= 50;
+	printf("P1[1]:%d\n", p1[1]);
+
+	p2[0] = p1[0] + cos(0.524) * hyp;
+	printf("P2[0]:%d\n", p2[0]);
+	p2[1] = p1[1] + sin(0.524) * hyp;
+	printf("P2[1]:%d\n", p2[1]);
+	plot_line(img, p1, p2, 0xFFFFFF);
+	printf("----------------------\n");
+
+	p1[0] = p2[0] - 400;
+	p1[1] = p2[1] + 200;
+	plot_line(img, p1, p2, 0x00FF00);
+
+	p1[0] -= 100;
+	p1[1] += 50;
+	p2[0] = 100;
+	p2[1] = 100;
+	plot_line(img, p1, p2, 0xFF0000);
 
 	
-
-
-
-
-
-
-
-	p1[0] = 500;
-	printf("P1[0]:%d\n", p1[0]);
-	p1[1] = 800;
-	printf("P1[1]:%d\n", p1[1]);
-
-	p2[0] = p1[0] + cos(0.524) * hyp;
-	printf("P2[0]:%d\n", p2[0]);
-	p2[1] = p1[1] + sin(0.524) * hyp;
-	printf("P2[1]:%d\n", p2[1]);
-	plot_line(img, p1, p2, 0xFFFFFF);
-	printf("----------------------\n");
-
-	p1[0] = p2[0];
-	printf("P1[0]:%d\n", p1[0]);
-	p1[1] = p2[1];
-	printf("P1[1]:%d\n", p1[1]);
-
-
-	p2[0] = p1[0] + cos(0.524) * hyp;
-	printf("P2[0]:%d\n", p2[0]);
-	p2[1] = p1[1] + sin(-0.524) * hyp;
-	printf("P2[1]:%d\n", p2[1]);
-	plot_line(img, p1, p2, 0xFFFFFF);
-	printf("----------------------\n");
-
-	p1[0] = 500;
-	printf("P1[0]:%d\n", p1[0]);
-	p1[1] = 800;
-	printf("P1[1]:%d\n", p1[1]);
-
-	p2[0] = p1[0] + cos(0.524) * hyp;
-	printf("P2[0]:%d\n", p2[0]);
-	p2[1] = p1[1] - sin(0.524) * hyp;
-	printf("P2[1]:%d\n", p2[1]);
-	plot_line(img, p1, p2, 0xFFFFFF);
-	printf("----------------------\n");
-
-	p1[0] = p2[0];
-	printf("P1[0]:%d\n", p1[0]);
-	p1[1] = p2[1];
-	printf("P1[1]:%d\n", p1[1]);
-
-
-	p2[0] = p1[0] + cos(0.524) * hyp;
-	printf("P2[0]:%d\n", p2[0]);
-	p2[1] = p1[1] + sin(0.524) * hyp;
-	printf("P2[1]:%d\n", p2[1]);
-	plot_line(img, p1, p2, 0xFFFFFF);
-	printf("----------------------\n");
-
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	mlx_hook(vars.win, ON_KEYDOWN, KEYPRESS_MASK, key_listener, &vars);
 	mlx_hook(vars.win, ON_DESTROY, NO_MASK, on_destroy, &vars);
 	// mlx_hook(vars.win, ON_MOUSEDOWN, BUTTONPRESS_MASK, on_mouse_down, &vars);
 	mlx_loop(vars.mlx);
+	
 	return (0);
 }
 
@@ -197,7 +162,7 @@ int main (void)
 // 		p2[0] = i;
 // 		p2[1] = 0;
 // 		plot_line(img, p1, p2, 0x00FF0000);
-// 		i -= 100;
+// 		i -= 500;
 // 	}
 // }
 
