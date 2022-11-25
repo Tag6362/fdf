@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 11:20:25 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/25 18:33:57 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 # include "mlx.h"
 # include "libft.h"
 # include <fcntl.h>
+# include <math.h>
+# define PI 3.142857
 # define ON_KEYDOWN 2
 # define ON_MOUSEDOWN 4
 # define ON_DESTROY 17
@@ -23,7 +25,7 @@
 # define BUTTONPRESS_MASK 1l<<2
 
 
-typedef struct	s_struct {
+typedef struct	s_data {
 	void	*img;
 	void	*addr;
 	int		bpp;
@@ -38,7 +40,7 @@ typedef struct	s_vars {
 
 typedef struct	s_point {
 	int				alt;
-	unsigned long	color;
+	unsigned int	color;
 }				t_point;
 
 /* ---PROTOS--- */
@@ -60,13 +62,18 @@ int key_listener(int keycode, t_vars *vars);
 int on_destroy(t_vars *vars);
 int on_mouse_down(int button, int x, int y, t_vars *vars);
 
-/* Line Plotting */
-void plotLine(t_data img, int *p1, int *p2, int color);
+/* Line Plotting 1*/
+void plot_line(t_data img, int *p1, int *p2, int color);
+void	mlx_spp(t_data *data, int x, int y, int color);
+
+/* Line Plotting 2*/
+void plot_line_low(t_data img, int *p1, int *p2, unsigned int color);
+void plot_line_high(t_data img, int *p1, int *p2, unsigned int color);
 
 /* Memory */
 void	**ft_free_strs(char **strs);
 void	**ft_free_map(t_point **map, unsigned int len); //FIXME
 
 /* ATOUL */
-unsigned long ft_atoul_hexa(const char *str);
+unsigned int ft_atou_hexa(const char *str);
 #endif

@@ -6,13 +6,13 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 12:03:04 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/25 14:45:49 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	get_line_number(char *path_to_map, int *line_number)
+static int	get_line_number(char *path_to_map, int *line_number)
 {
 	int		i;
 	int		ind;
@@ -41,20 +41,38 @@ int	get_line_number(char *path_to_map, int *line_number)
 	return (close(fd), free(buffer), 1);
 }
 
-void	pixel_maker(t_point *map, int ind, char *info)
+static void	pixel_maker(t_point *map, int ind, char *info)
 {
 	char	**tmp;
 
 	tmp = ft_split(info, ',');
 	if (!tmp[1])
-		map[ind].color = 0x00000000;
+		map[ind].color = 0x00FFFFFF;
 	else
-		map[ind].color = ft_atoul_hexa(tmp[1]);
+		map[ind].color = ft_atou_hexa(tmp[1]);
 	map[ind].alt = ft_atoi(tmp[0]);
 	ft_free_strs(tmp);
 }
 
-int	mapper(int fd, t_point **map, int line_number, int *line_len)
+static void	auxiliary(int fd, int line_len, int i, t_point **map)
+{
+	int		j;
+	char	*tmp;
+	char	**strs;
+
+	j = 0;
+	tmp = get_next_line(fd);
+	strs = ft_split(tmp, ' ');
+	while (j < line_len)
+	{
+		pixel_maker(*map, line_len * i + j, strs[j]);
+		j++;
+	}
+	free(tmp);
+	ft_free_strs(strs);
+}
+
+static int	mapper(int fd, t_point **map, int line_number, int *line_len)
 {
 	char	*tmp;
 	char	**strs;
@@ -79,45 +97,36 @@ int	mapper(int fd, t_point **map, int line_number, int *line_len)
 	free(tmp);
 	ft_free_strs(strs);
 	while (i < line_number)
-	{
-		j = 0;
-		tmp = get_next_line(fd);
-		strs = ft_split(tmp, ' ');
-		while (j < (*line_len))
-		{
-			pixel_maker(*map, (*line_len) * i + j, strs[j]);
-			j++;
-		}
-		free(tmp);
-		ft_free_strs(strs);
-		i++;
-	}
+		auxiliary(fd, *line_len, i++, map);
 	return (1);
 }
 
-int	parsing(const char *map_name)
+t_point	*parsing(const char *map_name, int *line_number, int *line_len)
 {
 	int		fd;
-	t_point *map;
-	int		line_number;
-	int		line_len;
+	t_point	*map;
 	char	*path_to_map;
-	
-	line_number = 0;
-	line_len = 0;
+
+	*line_number = 0;
+	*line_len = 0;
 	path_to_map = ft_strjoin("../test_maps/", map_name);
-	if (get_line_number(path_to_map, &line_number) == -2)
-		return (free(path_to_map), -2);
+	if (get_line_number(path_to_map, line_number) == -2)
+		return (free(path_to_map), NULL);
 	fd = open(path_to_map, O_RDONLY);
-	mapper(fd, &map, line_number, &line_len);
+	mapper(fd, &map, *line_number, line_len);
 	close(fd);
 	free(path_to_map);
-	free(map);
-	return (1);
+	return (map);
 }
 
+// int	main(void)
+// {
+// 	t_point	*map;
+// 	int		line_number;
+// 	int		line_len;
 
-int	main(void)
-{
-	parsing("elem-col.fdf");
-}
+// 	map = parsing("elem-col.fdf", &line_number, &line_len);
+// 	printf("%X", (map + 23)->color);
+// 	free(map);
+// 	return (0);
+// }

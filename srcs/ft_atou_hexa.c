@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoul_hexa.c                                    :+:      :+:    :+:   */
+/*   ft_atou_hexa.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 10:47:36 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 11:46:05 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/25 14:46:42 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static unsigned long hexa_atoul(char c)
+static unsigned int	hexa_atou(char c)
 {
 	int	i;
 
@@ -34,12 +34,11 @@ static unsigned long hexa_atoul(char c)
 	return (0);
 }
 
-unsigned long ft_atoul_hexa(const char *str)
+unsigned int	ft_atou_hexa(const char *str)
 {
 	unsigned int	nb;
 	int				i;
 
-	printf("%s STR IN ATOUL\n", str);
 	nb = 0;
 	i = 0;
 	while (str[i] == ' ' || (8 <= str[i] && str[i] <= 13))
@@ -47,9 +46,10 @@ unsigned long ft_atoul_hexa(const char *str)
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	i += 2;
-	while (('0' <= str[i] && str[i] <= '9') || ('a' <= str[i] && str[i] <= 'f') || ('A' <= str[i] && str[i] <= 'F'))
+	while (('0' <= str[i] && str[i] <= '9') || ('a' <= str[i] && str[i] <= 'f')
+		|| ('A' <= str[i] && str[i] <= 'F'))
 	{
-		nb = nb * 16 + hexa_atoul(str[i]);
+		nb = nb * 16 + hexa_atou(str[i]);
 		i++;
 	}
 	return (nb);
@@ -58,6 +58,6 @@ unsigned long ft_atoul_hexa(const char *str)
 // int main(void)
 // {
 // 	char *str = "0x81000000";
-// 	printf("%lx\n", ft_atoul_hexa((const char *)str));
+// 	printf("%lx\n", ft_atoil_hexa((const char *)str));
 // 	return (0);
 // }
