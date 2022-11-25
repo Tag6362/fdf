@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   memory.c                                           :+:      :+:    :+:   */
+/*   ft_atou.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/24 14:03:38 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 10:35:07 by tgernez          ###   ########.fr       */
+/*   Created: 2022/11/25 10:47:36 by tgernez           #+#    #+#             */
+/*   Updated: 2022/11/25 10:49:16 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
-
-void	**ft_free_strs(char **strs)
+unsigned int ft_atou(const char *str)
 {
-	int	i;
+	unsigned int	nb;
+	int				i;
 
+	nb = 0;
 	i = 0;
-	while (strs[i])
+	while (str[i] == ' ' || (8 <= str[i] && str[i] <= 13))
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
+	while ('0' <= str[i] && str[i] <= '9')
 	{
-		free(strs[i]);
-		strs[i++] = NULL;
-	}
-	free(strs);
-	return (NULL);
-}
-
-void	**ft_free_map(t_point **map, unsigned int len) //FIXME
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		free(*map + i);
+		nb = nb * 10 + str[i] - '0';
 		i++;
 	}
-	return (NULL);
+	return (nb);
 }
