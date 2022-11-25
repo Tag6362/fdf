@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 10:52:41 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/25 11:43:58 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,11 +166,11 @@ void	pixel_maker(t_point *map, int ind, char *info)
 	if (!tmp[1])
 	{	
 		// printf("wtf\n");
-		map[ind].color = 0xFF000000; //Arbitrary color chosen if no color
+		map[ind].color = 0x00000000; //Arbitrary color chosen if no color
 	}
 	else
 	{
-		map[ind].color = ft_atou(tmp[1]);
+		map[ind].color = ft_atoul_hexa(tmp[1]);
 	}
 	map[ind].alt = ft_atoi(tmp[0]);
 	ft_free_strs(tmp);
