@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 23:32:24 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/26 02:16:51 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void plot_line_high(t_data img, int *p1, int *p2, unsigned int color);
 
 /* Memory */
 void	**ft_free_strs(char **strs);
-void	**ft_free_map(t_point **map, unsigned int len); //FIXME
 
 /* Atoul */
 unsigned int ft_atou_hexa(const char *str);
