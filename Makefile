@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/25 22:28:50 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/26 19:35:58 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					parsing \
 					memory \
 					ft_atou_hexa \
+					math_functions \
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
@@ -66,6 +67,8 @@ ${NAME}: ${OBJS} ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
 
 sanitize: ${OBJS} ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
 	@${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o fdf -g3 -fsanitize=address 
+
+re_san: fclean sanitize
 
 ${LIBFTDIR}/libft.a:
 	@make -C ${LIBFTDIR}

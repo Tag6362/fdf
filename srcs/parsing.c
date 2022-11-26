@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 23:54:27 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/26 18:01:47 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,20 @@
 
 static int	get_line_number(char *path_to_map, int *line_number)
 {
-	int		i;
-	int		ind;
-	char	*buffer;
-	int		fd;
-	
+	int	fd;
+	char *tmp;
+
 	fd = open(path_to_map, O_RDONLY);
-	ind = 0;
-	buffer = ft_calloc(4097, 1);
-	if (!buffer)
-		return (close(fd), -2);
-	ind = read(fd, buffer, 4096);
-	while (ind != -1 && ind)
+	tmp = get_next_line(fd);
+	while (tmp)
 	{
-		i = 0;
-		while (buffer[i])
-		{
-			if (buffer[i] == '\n')
-				(*line_number)++;
-			i++;
-		}
-		ind = read(fd, buffer, 4096);
+		(*line_number)++;
+		free(tmp);
+		tmp = get_next_line(fd);
 	}
-	if (ind == -1)
-		return (close(fd), free(buffer), -2);
-	return (close(fd), free(buffer), 1);
+	free(tmp);
+	close(fd);
+	return (1);
 }
 
 static void	pixel_maker(t_point *map, int ind, char *info)
@@ -95,6 +84,7 @@ static int	mapper(int fd, t_point **map, int line_number, int *line_len)
 	}
 	free(tmp);
 	ft_free_strs(strs);
+	ft_printf("Map size: %dx%d\n", *line_len, line_number);
 	while (i < line_number)
 		auxiliary(fd, *line_len, i++, map);
 	return (1);

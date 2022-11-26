@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 10:47:36 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 14:46:42 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/26 17:34:10 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ unsigned int	ft_atou_hexa(const char *str)
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	i += 2;
-	while (('0' <= str[i] && str[i] <= '9') || ('a' <= str[i] && str[i] <= 'f')
+	while (('0' <= str[i] && str[i] <= '9')
+		|| ('a' <= str[i] && str[i] <= 'f')
 		|| ('A' <= str[i] && str[i] <= 'F'))
 	{
 		nb = nb * 16 + hexa_atou(str[i]);

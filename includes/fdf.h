@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/26 02:16:51 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/26 22:42:22 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	mlx_spp(t_data *data, int x, int y, int color);
 /* Line Plotting 2*/
 void plot_line_low(t_data img, int *p1, int *p2, unsigned int color);
 void plot_line_high(t_data img, int *p1, int *p2, unsigned int color);
+void	plot_line_vertical(t_data img, int *p1, int *p2, unsigned int col);
 
 /* Memory */
 void	**ft_free_strs(char **strs);
@@ -80,4 +81,9 @@ unsigned int ft_atou_hexa(const char *str);
 
 /* Parsing */
 t_point		*parsing(const char *map_name, int *line_number, int *line_len);
+
+/* Math functions*/
+long power(int nb, int power);
+int ft_rev_bigger(int *a, int *b);
+
 #endif
