@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 18:33:57 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/25 23:32:24 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # define NO_MASK 0L
 # define KEYPRESS_MASK 1L<<0
 # define BUTTONPRESS_MASK 1l<<2
+# define WINDOW_X 1500
+# define WINDOW_Y 900
 
 
 typedef struct	s_data {
@@ -74,6 +76,9 @@ void plot_line_high(t_data img, int *p1, int *p2, unsigned int color);
 void	**ft_free_strs(char **strs);
 void	**ft_free_map(t_point **map, unsigned int len); //FIXME
 
-/* ATOUL */
+/* Atoul */
 unsigned int ft_atou_hexa(const char *str);
+
+/* Parsing */
+t_point		*parsing(const char *map_name, int *line_number, int *line_len);
 #endif

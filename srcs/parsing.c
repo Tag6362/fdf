@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 14:45:49 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/25 23:54:27 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	get_line_number(char *path_to_map, int *line_number)
 	int		ind;
 	char	*buffer;
 	int		fd;
-
+	
 	fd = open(path_to_map, O_RDONLY);
 	ind = 0;
 	buffer = ft_calloc(4097, 1);
@@ -85,7 +85,6 @@ static int	mapper(int fd, t_point **map, int line_number, int *line_len)
 	strs = ft_split(tmp, ' ');
 	while (strs[*line_len])
 		(*line_len)++;
-	(*line_len)--;
 	*map = ft_calloc((line_number * (*line_len) + 1), sizeof(t_point));
 	if (!map)
 		return (-2);
@@ -109,9 +108,11 @@ t_point	*parsing(const char *map_name, int *line_number, int *line_len)
 
 	*line_number = 0;
 	*line_len = 0;
-	path_to_map = ft_strjoin("../test_maps/", map_name);
+	path_to_map = ft_strjoin("test_maps/", map_name);
+	ft_printf("Accessing %s...\n", path_to_map);
 	if (get_line_number(path_to_map, line_number) == -2)
-		return (free(path_to_map), NULL);
+		return (ft_printf("Wrong path\n"), free(path_to_map), NULL);
+	ft_printf("Done!\n");
 	fd = open(path_to_map, O_RDONLY);
 	mapper(fd, &map, *line_number, line_len);
 	close(fd);
@@ -126,7 +127,8 @@ t_point	*parsing(const char *map_name, int *line_number, int *line_len)
 // 	int		line_len;
 
 // 	map = parsing("elem-col.fdf", &line_number, &line_len);
-// 	printf("%X", (map + 23)->color);
+// 	printf("%dx%d\n", line_len, line_number);
+// 	printf("%X", (map + 32)->color);
 // 	free(map);
 // 	return (0);
 // }
