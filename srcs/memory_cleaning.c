@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:03:38 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 10:35:07 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/28 10:09:45 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ void	**ft_free_strs(char **strs)
 		strs[i++] = NULL;
 	}
 	free(strs);
+	return (NULL);
+}
+
+void	**ft_free_int_tab_2(int **tab, int len_tab)
+{
+	int	i;
+
+	i = 0;
+	while (i < len_tab)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 	return (NULL);
 }
 

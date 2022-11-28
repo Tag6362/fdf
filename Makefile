@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/26 19:35:58 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/28 10:17:37 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,10 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					line_plotting_1 \
 					line_plotting_2 \
 					parsing \
-					memory \
+					memory_cleaning \
 					ft_atou_hexa \
 					math_functions \
+					memory_allocation \
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft

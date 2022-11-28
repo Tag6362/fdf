@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/26 22:42:22 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/28 10:29:15 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,12 @@ void plot_line_low(t_data img, int *p1, int *p2, unsigned int color);
 void plot_line_high(t_data img, int *p1, int *p2, unsigned int color);
 void	plot_line_vertical(t_data img, int *p1, int *p2, unsigned int col);
 
-/* Memory */
+/* Memory Cleaning*/
 void	**ft_free_strs(char **strs);
+void	**ft_free_int_tab_2(int **tab, int len_tab);
+
+/* Memory Allocation */
+int **ft_calloc_int_tab_2(int len_tab, int len_subtab);
 
 /* Atoul */
 unsigned int ft_atou_hexa(const char *str);

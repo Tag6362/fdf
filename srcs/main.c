@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/26 22:45:09 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/28 10:28:52 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,29 @@
 // 	}
 // }
 
+int	**get_plan_points(int hyp, int line_number, int line_len, int *start_point)
+{
+	int	**tab_points;
+	int	i;
+	
+	tab_points = ft_calloc_int_tab_2(2, 2);
+	if (!tab_points)
+		return (NULL);
+	i = 0;
+	while (i++ < line_number)
+	{
+		tab_points[0][0] -= hyp * 0.866;
+		tab_points[0][1] += hyp / 2;
+	}
+	i = 0;
+	while (i++ < line_len)
+	{
+		tab_points[1][0] += hyp * 0.866;
+		tab_points[1][1] += hyp / 2;
+	}
+	return (tab_points);
+}
+
 int main (int ac, char **av)
 {
 	t_vars	vars;
@@ -49,10 +72,9 @@ int main (int ac, char **av)
 	t_point *map;
 	int line_number;
 	int line_len;
-	int	i;
-	int j;
-	
-	// int hyp = 30;
+	int **tab_points;
+
+	int hyp = 30;
 	int a[2];
 	int b[2];
 	int c[2];
@@ -64,8 +86,6 @@ int main (int ac, char **av)
 	c[0] = a[0];
 	c[1] = a[1];
 
-	i = 0;
-	j = 0;
 	if (ac > 1)
 	{
 		vars.mlx = mlx_init();
@@ -73,24 +93,20 @@ int main (int ac, char **av)
 		img.img = mlx_new_image(vars.mlx, WINDOW_X, WINDOW_Y);
 		img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);	
 		map = parsing(av[1], &line_number, &line_len);
-		// while (i < line_number)
-		// {
-		// 	b[0] -= hyp * 0.866;
-		// 	b[1] += hyp / 2;
-		// 	i++;
-		// }
-		// ft_printf("B 0:%d, 1:%d\n", b[0], b[1]);
-		// i = 0;
-		// while (i < line_len)
-		// {
-		// 	c[0] += hyp * 0.866;
-		// 	c[1] += hyp / 2;
-		// 	i++;
-		// }
-		// plot_line(img, b, a, 0xFFFF00);
-		// plot_line(img, a, c, 0xFF);
-		b[1] = 290;
-		plot_line_vertical(img, a, b , 0xFFFFFF);
+		tab_points = get_plan_points(hyp, line_number, line_len, a);
+		b[0] = tab_points[0][0];
+		b[1] = tab_points[0][1];
+		c[0] = tab_points[1][0];
+		c[1] = tab_points[1][1];	
+		free_int_tab_2(tab_points, 2);
+		plot_line(img, b, a, 0xFFFF00);
+		plot_line(img, a, c, 0xFF);
+		// b[0] = 650;
+		// b[1] = 310;
+		// plot_line(img, a, b , 0xFFFFFF);
+		// b[0] = 650;
+		// b[1] = 290;
+		// plot_line(img, a, b , 0xFFFFFF);
 		mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 		mlx_hook(vars.win, ON_KEYDOWN, KEYPRESS_MASK, key_listener, &vars);
 		mlx_hook(vars.win, ON_DESTROY, NO_MASK, on_destroy, &vars);
