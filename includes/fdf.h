@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/29 14:11:42 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/29 16:46:25 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,6 @@ t_point	*parsing(const char *map_name, int *line_number, int *line_len);
 long	power(int nb, int power);
 int	ft_rev_bigger(int *a, int *b);
 
+/* Mapping */
+int create_map(int hyp, int *dimensions, int *origin, t_data img, t_point *map);
 #endif

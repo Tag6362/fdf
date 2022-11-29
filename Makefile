@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/28 10:17:37 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/29 15:55:54 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					ft_atou_hexa \
 					math_functions \
 					memory_allocation \
+					mapping \
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
