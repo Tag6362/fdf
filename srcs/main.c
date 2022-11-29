@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/28 10:28:52 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/29 15:49:39 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,22 @@ int	**get_plan_points(int hyp, int line_number, int line_len, int *start_point)
 {
 	int	**tab_points;
 	int	i;
-	
+	//ADD INIT FOR TAB[0] and TAB[1] from STARTPOINT
 	tab_points = ft_calloc_int_tab_2(2, 2);
 	if (!tab_points)
 		return (NULL);
+	tab_points[0][0] = start_point[0];
+	tab_points[0][1] = start_point[1];
+	tab_points[1][0] = start_point[0];
+	tab_points[1][1] = start_point[1];
 	i = 0;
-	while (i++ < line_number)
+	while (i++ < line_len)
 	{
 		tab_points[0][0] -= hyp * 0.866;
 		tab_points[0][1] += hyp / 2;
 	}
 	i = 0;
-	while (i++ < line_len)
+	while (i++ < line_number)
 	{
 		tab_points[1][0] += hyp * 0.866;
 		tab_points[1][1] += hyp / 2;
@@ -69,18 +73,18 @@ int main (int ac, char **av)
 {
 	t_vars	vars;
 	t_data	img;
-	t_point *map;
-	int line_number;
-	int line_len;
-	int **tab_points;
+	t_point	*map;
+	int		line_number;
+	int		line_len;
+	int		**tab_points;
 
-	int hyp = 30;
+	int hyp = 50;
 	int a[2];
 	int b[2];
 	int c[2];
 	
 	a[0] = 600;
-	a[1] = 300;
+	a[1] = 100;
 	b[0] = a[0];
 	b[1] = a[1];
 	c[0] = a[0];
@@ -97,10 +101,37 @@ int main (int ac, char **av)
 		b[0] = tab_points[0][0];
 		b[1] = tab_points[0][1];
 		c[0] = tab_points[1][0];
-		c[1] = tab_points[1][1];	
-		free_int_tab_2(tab_points, 2);
-		plot_line(img, b, a, 0xFFFF00);
-		plot_line(img, a, c, 0xFF);
+		c[1] = tab_points[1][1];
+		ft_printf("C[x]=%d, C[y]=%d\n", c[0], c[1]);
+
+		plot_line(img, b, a, 0xFFFFFF); //BLEU
+		plot_line(img, a, c, 0xFFFFFF); //JAUNE
+		int i = 0;
+		while (i < line_number)
+		{
+			// ft_printf("A[x]=%d, A[y]=%d\n", a[0], a[1]);
+			// ft_printf("B[x]=%d, B[y]=%d\n", b[0], b[1]);
+			a[0] += hyp * 0.866;
+			a[1] += hyp / 2;
+			b[0] += hyp * 0.866;
+			b[1] += hyp / 2;
+			plot_line(img, b, a, 0xFFFFFF);
+			i++;
+		}
+		a[0] = 600;
+		a[1] = 100;
+		i = 0;
+		while (i < line_len)
+		{
+			ft_printf("A[x]=%d, A[y]=%d\n", a[0], a[1]);
+			ft_printf("C[x]=%d, C[y]=%d\n", c[0], c[1]);
+			a[0] -= hyp * 0.866;
+			a[1] += hyp / 2;
+			c[0] -= hyp * 0.866;
+			c[1] += hyp / 2;
+			plot_line(img, a, c, 0xFFFFFF);
+			i++;
+		}
 		// b[0] = 650;
 		// b[1] = 310;
 		// plot_line(img, a, b , 0xFFFFFF);
@@ -110,9 +141,12 @@ int main (int ac, char **av)
 		mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 		mlx_hook(vars.win, ON_KEYDOWN, KEYPRESS_MASK, key_listener, &vars);
 		mlx_hook(vars.win, ON_DESTROY, NO_MASK, on_destroy, &vars);
+		ft_free_int_tab_2(tab_points, 2);
 		free(map);
 		mlx_loop(vars.mlx);
 	}
+	else
+		ft_printf("Provide a map name please\n");
 	return (0);
 }
 

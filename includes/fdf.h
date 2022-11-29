@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/28 10:29:15 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/29 14:11:42 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,21 @@ int get_g(int trgb);
 int get_b(int trgb);
 
 /* Colors 2*/
-int add_shade(int trgb, float shade);
-int color_opposite(int color);
+int	add_shade(int trgb, float shade);
+int	color_opposite(int color);
 
 /* Events Window */
-int key_listener(int keycode, t_vars *vars);
-int on_destroy(t_vars *vars);
-int on_mouse_down(int button, int x, int y, t_vars *vars);
+int	key_listener(int keycode, t_vars *vars);
+int	on_destroy(t_vars *vars);
+int	on_mouse_down(int button, int x, int y, t_vars *vars);
 
 /* Line Plotting 1*/
-void plot_line(t_data img, int *p1, int *p2, int color);
+void	plot_line(t_data img, int *p1, int *p2, int color);
 void	mlx_spp(t_data *data, int x, int y, int color);
 
 /* Line Plotting 2*/
-void plot_line_low(t_data img, int *p1, int *p2, unsigned int color);
-void plot_line_high(t_data img, int *p1, int *p2, unsigned int color);
+void	plot_line_low(t_data img, int *p1, int *p2, unsigned int color);
+void	plot_line_high(t_data img, int *p1, int *p2, unsigned int color);
 void	plot_line_vertical(t_data img, int *p1, int *p2, unsigned int col);
 
 /* Memory Cleaning*/
@@ -78,16 +78,16 @@ void	**ft_free_strs(char **strs);
 void	**ft_free_int_tab_2(int **tab, int len_tab);
 
 /* Memory Allocation */
-int **ft_calloc_int_tab_2(int len_tab, int len_subtab);
+int	**ft_calloc_int_tab_2(int len_tab, int len_subtab);
 
 /* Atoul */
-unsigned int ft_atou_hexa(const char *str);
+unsigned int	ft_atou_hexa(const char *str);
 
 /* Parsing */
-t_point		*parsing(const char *map_name, int *line_number, int *line_len);
+t_point	*parsing(const char *map_name, int *line_number, int *line_len);
 
 /* Math functions*/
-long power(int nb, int power);
-int ft_rev_bigger(int *a, int *b);
+long	power(int nb, int power);
+int	ft_rev_bigger(int *a, int *b);
 
 #endif
