@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/29 18:16:59 by tgernez          ###   ########.fr        #
+#    Updated: 2022/11/30 20:24:18 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					math_functions \
 					memory_allocation \
 					mapping \
+					map_plotting \
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
