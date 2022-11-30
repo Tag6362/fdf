@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/26 18:01:47 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/11/30 12:25:26 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,15 @@ static void	pixel_maker(t_point *map, int ind, char *info)
 
 	tmp = ft_split(info, ',');
 	if (!tmp[1])
-		map[ind].color = 0x00FFFFFF;
+		(map + ind)->color = 0xFFFFFF;
 	else
-		map[ind].color = ft_atou_hexa(tmp[1]);
-	map[ind].alt = ft_atoi(tmp[0]);
+		(map + ind)->color = ft_atou_hexa(tmp[1]);
+	// ft_printf("IND %d /IND\n", ind);
+	(map + ind)->alt = ft_atoi(tmp[0]);
 	ft_free_strs(tmp);
 }
 
-static void	auxiliary(int fd, int line_len, int i, t_point **map)
+static void	auxiliary(int fd, int line_num, int line_len, int i, t_point **map)
 {
 	int		j;
 	char	*tmp;
@@ -52,11 +53,13 @@ static void	auxiliary(int fd, int line_len, int i, t_point **map)
 	j = 0;
 	tmp = get_next_line(fd);
 	strs = ft_split(tmp, ' ');
+	// ft_printf("Start loop\n");
 	while (j < line_len)
 	{
 		pixel_maker(*map, line_len * i + j, strs[j]);
 		j++;
 	}
+	// ft_printf("End loop\n");
 	free(tmp);
 	ft_free_strs(strs);
 }
@@ -74,7 +77,7 @@ static int	mapper(int fd, t_point **map, int line_number, int *line_len)
 	strs = ft_split(tmp, ' ');
 	while (strs[*line_len])
 		(*line_len)++;
-	*map = ft_calloc((line_number * (*line_len) + 1), sizeof(t_point));
+	*map = ft_calloc((line_number * (*line_len)), sizeof(t_point));
 	if (!map)
 		return (-2);
 	while (j < (*line_len))
@@ -86,7 +89,7 @@ static int	mapper(int fd, t_point **map, int line_number, int *line_len)
 	ft_free_strs(strs);
 	ft_printf("Map size: %dx%d\n", *line_len, line_number);
 	while (i < line_number)
-		auxiliary(fd, *line_len, i++, map);
+		auxiliary(fd, line_number, *line_len, i++, map);
 	return (1);
 }
 
@@ -107,6 +110,20 @@ t_point	*parsing(const char *map_name, int *line_number, int *line_len)
 	mapper(fd, &map, *line_number, line_len);
 	close(fd);
 	free(path_to_map);
+	
+	int i = 0;
+	int j = 0;
+	while (i < *line_number)
+	{
+		j = 0;
+		while (j < *line_len)
+		{
+			ft_printf("%d ", (map + i * *line_len + j)->alt);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
 	return (map);
 }
 
