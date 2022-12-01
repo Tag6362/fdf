@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/30 20:38:03 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:29:04 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,14 @@ int	on_destroy(t_vars *vars);
 int	on_mouse_down(int button, int x, int y, t_vars *vars);
 
 /* Line Plotting 1*/
-void	plot_line(t_data img, int *p1, int *p2, int color);
-void	mlx_spp(t_data *data, int x, int y, int color);
+
+void	plot_line(t_data *img, int *p1, int *p2, unsigned int color);
+void	bres_plot_high(t_data *img, int *p1, int *p2, unsigned int color);
+void	bres_plot_low(t_data *img, int *p1, int *p2, unsigned int color);
 
 /* Line Plotting 2*/
-void	plot_line_low(t_data img, int *p1, int *p2, unsigned int color);
-void	plot_line_high(t_data img, int *p1, int *p2, unsigned int color);
 void	plot_line_vertical(t_data img, int *p1, int *p2, unsigned int col);
+void	mlx_spp(t_data *data, int x, int y, int color);
 
 /* Memory Cleaning*/
 void	**ft_free_strs(char **strs);
@@ -97,4 +98,5 @@ void read_tab_test(int **tab_points, int *dims);
 
 /* Map Plotting */
 void	plot_map(t_data img, t_point *map, int *dims, int hyp, int **points);
+/* Merci a Danil de savoir lire*/
 #endif

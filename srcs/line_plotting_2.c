@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 15:20:12 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/28 09:52:51 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/01 13:01:55 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,27 +56,27 @@ void	plot_line_vertical(t_data img, int *p1, int *p2, unsigned int col)
 // 	// }
 // }
 
-void plot_line(t_data img, int *p1, int *p2, int color) //FIXME / Optimize
-{
-	if (abs(p2[1] - p1[1]) < abs(p2[0] - p1[0]))
-	{
-		if (p1[0] > p2[0])
-			plot_line_high(img, p2, p1, color);
-		else
-			plot_line_low(img, p1, p2, color);
-	}
-	else if (p1[0] == p2[0])
-	{
-		if (p1[1] > p2[1])
-			plot_line_vertical(img, p2, p1, color);
-		else
-			plot_line_vertical(img, p1, p2, color);
-	}
-	else
-	{
-		if (p1[1] > p2[1])
-			plot_line_high(img, p2, p1, color);
-		else
-			plot_line_low(img, p1, p2, color);
-	}
-}
+// void plot_line(t_data img, int *p1, int *p2, int color) //FIXME / Optimize
+// {
+// 	if (abs(p2[1] - p1[1]) < abs(p2[0] - p1[0]))
+// 	{
+// 		if (p1[0] > p2[0])
+// 			plot_line_high(img, p2, p1, color);
+// 		else
+// 			plot_line_low(img, p1, p2, color);
+// 	}
+// 	else if (p1[0] == p2[0])
+// 	{
+// 		if (p1[1] > p2[1])
+// 			plot_line_vertical(img, p2, p1, color);
+// 		else
+// 			plot_line_vertical(img, p1, p2, color);
+// 	}
+// 	else
+// 	{
+// 		if (p1[1] > p2[1])
+// 			plot_line_high(img, p2, p1, color);
+// 		else
+// 			plot_line_low(img, p1, p2, color);
+// 	}
+// }

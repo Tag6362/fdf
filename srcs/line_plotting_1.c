@@ -6,151 +6,191 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:47:33 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/25 15:28:39 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/01 16:28:29 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void plot_line_low(t_data img, int *p1, int *p2, unsigned int color)
+// void	plot_line(t_data *img, int *p1, int *p2, unsigned int color)
+// {
+// 	int			e2;
+// 	int			err;
+// 	const int	dx = abs(p2[0] - p1[0]);
+// 	const int	dy = -abs(p2[1] - p1[1]);
+// 	const int	sx = -1 + 2 * (p1[0] < p2[0]);
+// 	const int	sy = -1 + 2 * (p1[1] < p2[1]);
+
+// 	err = dx + dy;
+// 	while (1)
+// 	{
+// 		mlx_spp(img, p1[0], p1[1], color);
+// 		if (p1[0] == p2[0] && p1[1] == p2[1])
+// 			break ;
+// 		e2 = 2 * err;
+// 		if (e2 >= dy)
+// 		{
+// 			err += dy;
+// 			p1[0] += sx;
+// 		}
+// 		if (e2 <= dx)
+// 		{
+// 			err += dx;
+// 			p1[1] += sy;
+// 		}
+// 	}
+// }
+
+void	plot_line(t_data *img, int *p1, int *p2, unsigned int color)
 {
-	int x, y, dx, dy, dist, yi;
-	
-	dx = p2[0] - p1[0];
-	dy = p2[1] - p1[1];
-	yi = 1;
-	if (dy < 0)
+	if (abs(p2[0] - p1[0]) > abs(p2[1] - p1[1]))
 	{
-		yi = -1;
-		dy = -dy;
-	}
-	dist = (2 * dy) - dx;
-	x = p1[0];
-	y = p1[1];
-	while (x < p2[0])
-	{
-		mlx_spp(&img, x, y, color);
-		if (dist > 0)
+		if (p2[0] > p1[0])
 		{
-			y += yi;
-			dist += (2 * (dy - dx));
+			ft_printf("Bres Plot 1 \n");
+			bres_plot_low(img, p1, p2, color);
 		}
 		else
-			dist += 2 * dy;
-		x++;
+		{
+			ft_printf("Bres Plot 2 \n");
+			bres_plot_low(img, p2, p1, color);
+		}
+	}
+	else
+	{
+		if (p2[1] > p1[1])
+		{
+			ft_printf("Bres Plot Inv 1\n");
+			bres_plot_high(img, p1, p2, color);
+		}			
+		else
+		{
+			ft_printf("Bres Plot Inv 2\n");
+			bres_plot_high(img, p2, p1, color);
+		}
 	}
 }
 
-void plot_line_high(t_data img, int *p1, int *p2, unsigned int color)
+int	rev_points_x(int **p1, int **p2)
 {
-	int x, y, dx, dy, dist, xi;
-	
-	dx = p2[0] - p1[0];
-	dy = p2[1] - p1[1];
-	xi = 1;
-	if (dx < 0)
+	int	tmp;
+
+	if ((*p1)[0] > (*p2)[0])
 	{
-		xi = -1;
-		dx = -dx;
+		tmp = (*p1)[0];
+		(*p1)[0] = (*p2)[0];
+		(*p2)[0] = tmp;
+		tmp = (*p1)[1];
+		(*p1)[1] = (*p2)[1];
+		(*p2)[1] = tmp;
+		return (1);
 	}
-	dist = (2 * dx) - dy;
-	x = p1[0];
-	y = p1[1];
-	while (y < p2[1])
+	return (0);
+}
+
+int	rev_points_y(int **p1, int **p2)
+{
+	int	tmp;
+
+	if ((*p1)[1] > (*p2)[1])
 	{
-		mlx_spp(&img, x, y, color);
-		if (dist > 0)
+		tmp = (*p1)[0];
+		(*p1)[0] = (*p2)[0];
+		(*p2)[0] = tmp;
+		tmp = (*p1)[1];
+		(*p1)[1] = (*p2)[1];
+		(*p2)[1] = tmp;
+		return (1);
+	}
+	return (0);
+}
+
+void	bres_plot_low(t_data *img, int *p1, int *p2, unsigned int color)
+{
+	int	x;
+	int	y;
+	int	bres_val;
+	int	sign_delta_y;
+	int	delta_x;
+	int delta_y;
+
+	delta_x = p2[0] - p1[0];
+	delta_y = p2[1] - p1[1];
+	sign_delta_y = 1;
+	// sign_delta_y = 1 - (p2[1] - p1[1] < 0) * 2;
+	if (delta_y < 0)
+	{
+		sign_delta_y = -1;
+		delta_y = -delta_y;
+	}
+	bres_val = (2 * delta_y) - delta_x;
+	x = p1[0] - 1;
+	y = p1[1];
+	while (++x < p2[0])
+	{
+		mlx_spp(img, x, y, color);
+		if (bres_val > 0)
 		{
-			x += xi;
-			dist += (2 * (dx - dy));
+			y += sign_delta_y;
+			bres_val += 2 * (delta_y - delta_x);
 		}
 		else
-			dist += 2 * dx;
-		y++;
+		{
+			bres_val += 2 * delta_y;
+		}
 	}
 }
 
-// static void	mlx_spp(t_data *data, int x, int y, int color)
+
+void	bres_plot_high(t_data *img, int *p1, int *p2, unsigned int color)
+{
+	int	x;
+	int	y;
+	int	delta_x;
+	int delta_y;
+	int	bres_val;
+	int	sign_delta_x;
+
+	delta_x = p2[0] - p1[0];
+	delta_y = p2[1] - p1[1];
+	// sign_delta_x = 1 - (p2[0] - p1[0] < 0) * 2;
+	sign_delta_x = 1;
+	if (delta_x < 0)
+	{
+		delta_x = -delta_x;
+		sign_delta_x = -1;
+	}
+	bres_val = (2 * delta_x) - delta_y;
+	x = p1[0];
+	y = p1[1] - 1;
+	while (++y < p2[1])
+	{
+		mlx_spp(img, x, y, color);
+		if (bres_val > 0)
+		{
+			x += sign_delta_x;
+			bres_val += 2 * (delta_x - delta_y);
+		}
+		else
+		{
+			bres_val += 2 * delta_x;
+		}
+	}
+}
+
+// int main(void)
 // {
-// 	char *dst;
+// 	int *a;
+// 	int *b;
 
-// 	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
-// 	*(unsigned int *)dst = color;
-// }
+// 	a = malloc(sizeof(int) * 2);
+// 	b = malloc(sizeof(int) * 2);
+// 	a[0] = 100;
+// 	a[1] = 50;
+// 	b[0] = 50;
+// 	b[1] = 200;
+// 	rev_points_x(&a, &b);
+// 	printf("%d,%d | %d,%d\n", a[0], a[1], b[0], b[1]);
 
-
-// static void plotLineLow(t_data img, int *p1, int *p2, int color)
-// {
-// 	int x, y, dx, dy, dist, yi;
-	
-// 	dx = p2[0] - p1[0];
-// 	dy = p2[1] - p1[1];
-// 	yi = 1;
-// 	if (dy < 0)
-// 	{
-// 		yi = -1;
-// 		dy = -dy;
-// 	}
-// 	dist = (2 * dy) - dx;
-// 	x = p1[0];
-// 	y = p1[1];
-// 	while (x < p2[0])
-// 	{
-// 		mlx_spp(&img, x, y, color);
-// 		if (dist > 0)
-// 		{
-// 			y += yi;
-// 			dist += (2 * (dy - dx));
-// 		}
-// 		else
-// 			dist += 2 * dy;
-// 		x++;
-// 	}
-// }
-
-// static void plotLineHigh(t_data img, int *p1, int *p2, int color)
-// {
-// 	int x, y, dx, dy, dist, xi;
-	
-// 	dx = p2[0] - p1[0];
-// 	dy = p2[1] - p1[1];
-// 	xi = 1;
-// 	if (dy < 0)
-// 	{
-// 		xi = -1;
-// 		dx = -dx;
-// 	}
-// 	dist = (2 * dx) - dy;
-// 	x = p1[0];
-// 	y = p1[1];
-// 	while (y < p2[1])
-// 	{
-// 		mlx_spp(&img, x, y, color);
-// 		if (dist > 0)
-// 		{
-// 			x += xi;
-// 			dist += (2 * (dx - dy));
-// 		}
-// 		else
-// 			dist += 2 * dx;
-// 		y++;
-// 	}
-// }
-
-// void plotLine(t_data img, int *p1, int *p2, int color)
-// {
-// 	if (abs(p2[1] - p2[1]) < abs(p2[0] - p1[0]))
-// 	{
-// 		if (p1[0] > p2[0])
-// 			plotLineLow(img, p2, p1, color);
-// 		else
-// 			plotLineLow(img, p1, p2, color);
-// 	}
-// 	else
-// 	{
-// 		if (p1[1] > p2[1])
-// 			plotLineHigh(img, p2, p1, color);
-// 		else
-// 			plotLineLow(img, p1, p2, color);
-// 	}
+// 	free(a); free(b);
 // }
