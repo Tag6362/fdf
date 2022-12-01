@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/01 16:28:04 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/01 17:33:29 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,36 +117,38 @@ int main (int ac, char **av)
 
 	int hyp = 50;
 	int *a;
-	int *b;
+	// int *b;
 	// int c[2];
 	int dimensions[3];
 	
 	a = malloc(sizeof(int) * 2);
-	b = malloc(sizeof(int) * 2);
+	// b = malloc(sizeof(int) * 2);
 
 	// c[0] = a[0];
 	// c[1] = a[1];
 
 	if (ac > 1)
 	{
+		a[0] = 600;
+		a[1] = 600;
 		vars.mlx = mlx_init();
 		vars.win = mlx_new_window(vars.mlx, WINDOW_X, WINDOW_Y, "Il est lent ce lait");
 		img.img = mlx_new_image(vars.mlx, WINDOW_X, WINDOW_Y);
 		img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
-		line_test(a, b, &img);
-		// map = parsing(av[1], &line_number, &line_len);
+		// line_test(a, b, &img);
+		map = parsing(av[1], &line_number, &line_len);
 		// tab_points = get_plan_points(hyp, line_number, line_len, a);
 		// b[0] = tab_points[0][0];
 		// b[1] = tab_points[0][1];
 		// c[0] = tab_points[1][0];
 		// c[1] = tab_points[1][1];
 		// ft_printf("C[x]=%d, C[y]=%d\n", c[0], c[1]);
-		// dimensions[0] = line_number;
-		// dimensions[1] = line_len;
-		// dimensions[2] = 20; //SCALE
-		// points = create_tab(hyp, dimensions, a, map);
-		// read_tab_test(points, dimensions);
-		// plot_map(img, map, dimensions, hyp, points);
+		dimensions[0] = line_number;
+		dimensions[1] = line_len;
+		dimensions[2] = 20; //SCALE
+		points = create_tab(hyp, dimensions, a, map);
+		read_tab_test(points, dimensions);
+		plot_map(img, map, dimensions, hyp, points);
 		// create_map(hyp, dimensions, a, img, map);
 		// plot_line(img, b, a, 0xFFFFFF); //BLEU
 		// plot_line(img, a, c, 0xFFFFFF); //JAUNE
