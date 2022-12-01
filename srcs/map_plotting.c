@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:23:43 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/01 11:06:47 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/01 11:25:34 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,16 +206,10 @@ void plot_map(t_data img, t_point *map, int *dims, int hyp, int **points)
 			}
 			if (i < dims[1] - 1) //pas derniere ligne
 			{
-				     if ((points[i * dims[0] + j][1] > points[(i + 1) * dims[0] + j][1]) && (points[i * dims[0] + j][0] > points[(i + 1) * dims[0] + j][0]))
-					plot_line(img, points[i * dims[0] + j], points[(i + 1) * dims[0] + j], 0x00FF00);
-				else if ((points[i * dims[0] + j][1] > points[(i + 1) * dims[0] + j][1]) && (points[i * dims[0] + j][0] < points[(i + 1) * dims[0] + j][0]))
-					plot_line(img, points[i * dims[0] + j], points[(i + 1) * dims[0] + j], 0xFF00FF);
-				else if ((points[i * dims[0] + j][1] < points[(i + 1) * dims[0] + j][1]) && (points[i * dims[0] + j][0] > points[(i + 1) * dims[0] + j][0]))
-					plot_line(img, points[(i + 1) * dims[0] + j], points[i * dims[0] + j], 0xFFFFFF);
-				else if ((points[i * dims[0] + j][1] < points[(i + 1) * dims[0] + j][1]) && (points[i * dims[0] + j][0] < points[(i + 1) * dims[0] + j][0]))
-					plot_line(img, points[(i + 1) * dims[0] + j], points[i * dims[0] + j], 0xFF0000);
+				if ((points[i * dims[0] + j][1] > points[(i + 1) * dims[0] + j][1]))
+					plot_line(img, points[(i + 1) * dims[0] + j], points[i * dims[0] + j], 0xFF00FF);
 				else 
-					plot_line(img, points[(i + 1) * dims[0] + j], points[i * dims[0] + j], 0x0000FF);
+					plot_line(img, points[i * dims[0] + j], points[(i + 1) * dims[0] + j], 0x00FF00);
 
 			}
 			j++;
