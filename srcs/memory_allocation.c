@@ -6,27 +6,71 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 10:20:42 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/28 10:27:12 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/05 19:08:10 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int **ft_calloc_int_tab_2(int len_tab, int len_subtab)
+int	***ft_calloc_int_tab_3(int len_tab, int len_subtab, int len_subsubtab)
 {
 	int	i;
-	int	**tab;
+	int	j;
+	int	***tab;
 
-	tab = ft_calloc(len_tab, sizeof(int *));
+	tab = ft_calloc(len_tab, sizeof(int **));
 	if (!tab)
 		return (NULL);
 	i = 0;
 	while (i < len_tab)
 	{
-		tab[i] = ft_calloc(len_subtab, sizeof(int));
+		j = 0;
+		tab[i] = ft_calloc(len_subtab, sizeof(int *));
 		if (!tab[i])
-			return (ft_free_int_tab_2(tab, i - 1), NULL);
+			return (ft_free_int_tab_3(tab, i - 1, len_subtab), NULL);
+		while (j < len_subtab)
+		{
+			tab[i][j] = ft_calloc(len_subsubtab, sizeof(int));
+			if (!tab[i][j])
+				return (ft_free_int_tab_2(*tab, j - 1),
+					ft_free_int_tab_3(tab, i - 1, len_subtab), NULL);
+			j++;
+		}
 		i++;
 	}
 	return (tab);
 }
+
+// int main(void)
+// {
+// 	int i = 0;
+// 	int j = 0;
+// 	int len_tab = 3;
+// 	int len_subtab = 5;
+// 	int ***tab = ft_calloc_int_tab_3(len_tab, len_subtab, 1);
+
+// 	while (i < len_tab)
+// 	{
+// 		j = 0;
+// 		while (j < len_subtab)
+// 		{
+// 			tab[i][j][0] = i * j;
+// 			j++;	
+// 		}
+// 		i++;
+// 	}
+
+// 	i = 0;
+// 	while (i < len_tab)
+// 	{
+// 		j = 0;
+// 		while (j < len_subtab)
+// 		{
+// 			printf("%d ", tab[i][j][0]);
+// 			j++;	
+// 		}
+// 		printf("\n");
+// 		i++;
+// 	}
+// 	ft_free_int_tab_3(tab, len_tab, len_subtab);
+// }
