@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/11/30 20:24:18 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/05 17:21:26 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					memory_allocation \
 					mapping \
 					map_plotting \
+					ft_int_biggest_first \
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
@@ -67,7 +68,7 @@ all: ${NAME}
 	@echo "${LGREEN}Successfully created${NC}${CYAN} ${NAME}${NC}${LGREEN}!${NC}"
 
 ${NAME}: ${OBJS} ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
-	@${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o $@
+	@${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o $@ -g3
 
 sanitize: ${OBJS} ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
 	@${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o fdf -g3 -fsanitize=address 

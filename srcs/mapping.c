@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/29 15:50:19 by tgernez           #+#    #+#             */
-/*   Updated: 2022/11/30 21:34:57 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/05 18:25:56 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,61 +116,107 @@
 // 	}
 // }
 
-int	**create_tab(int hyp, int *dims, int *origin, t_point *map)
-{
-	int	**tab_points;
-	int	tmp[2];
-	int	ind;
-	int	i;
-	int	j;
+// int	**create_tab(int hyp, int *dims, int *origin, t_point *map)
+// {
+// 	int	**tab_points;
+// 	int	tmp[2];
+// 	int	ind;
+// 	int	i;
+// 	int	j;
 
-	tab_points = ft_calloc_int_tab_2(dims[0] * dims[1], 2);
-	if (!tab_points)
-		return (NULL);
-	i = 0;
-	tmp[0] = origin[0];
-	tmp[1] = origin[1];
-	while (i < dims[0])
-	{
-		j = 0;
-		while (j < dims[1])
-		{
-			ind = i * dims[0] + j;
-			tab_points[ind][0] = tmp[0];
-			tab_points[ind][1] = tmp[1] - map[ind].alt * dims[2];
-			tmp[0] -= round(hyp * 0.866);
-			tmp[1] += round(hyp / 2);
-			j++;	
-		}
-		origin[0] += round(hyp * 0.866);
-		origin[1] += round(hyp / 2);
-		tmp[0] = origin[0];
-		tmp[1] = origin[1];
-		i++;
-	}
-	return (tab_points);
-}
+// 	tab_points = ft_calloc_int_tab_2(dims[0] * dims[1], 2);
+// 	if (!tab_points)
+// 		return (NULL);
+// 	i = 0;
+// 	tmp[0] = origin[0];
+// 	tmp[1] = origin[1];
+// 	while (i < dims[0])
+// 	{
+// 		j = 0;
+// 		while (j < dims[1])
+// 		{
+// 			ind = i * dims[0] + j;
+// 			tab_points[ind][0] = tmp[0];
+// 			tab_points[ind][1] = tmp[1] - map[ind].alt * dims[2];
+// 			tmp[0] -= round(hyp * 0.866);
+// 			tmp[1] += round(hyp / 2);
+// 			j++;	
+// 		}
+// 		origin[0] += round(hyp * 0.866);
+// 		origin[1] += round(hyp / 2);
+// 		tmp[0] = origin[0];
+// 		tmp[1] = origin[1];
+// 		i++;
+// 	}
+// 	return (tab_points);
+// }
 
-void read_tab_test(int **tab_points, int *dims)
-{
-	int	i;
-	int	j;
-	int	ind;
+// int	**create_tab(int hyp, int line_number, int line_len, int *origin, t_point *map)
+// {
+// 	int	**tab_points;
+// 	int	tmp[2];
+// 	int	ind;
+// 	int	i;
+// 	int	j;
+// 	int tmp2;
 
-	i = 0;
-	while (i < dims[0])
-	{
-		j = 0;
-		while (j < dims[1])
-		{
-			ind = i * dims[0] + j;
-			ft_printf("%d,%d ", tab_points[ind][0], tab_points[ind][1]);
-			j++;	
-		}
-		ft_printf("\n");
-		i++;
-	}	
-}
+// 	tab_points = ft_calloc_int_tab_2(line_number * line_len, 2);
+// 	if (!tab_points)
+// 		return (NULL);
+// 	i = 0;
+// 	if (dims[1] > dims[0])
+// 	{
+// 		tmp2 = dims[0];
+// 		dims[0] = dims[1];
+// 		dims[1] = tmp2;
+// 		tmp2 = 1;
+// 	}
+// 	tmp[0] = origin[0];
+// 	tmp[1] = origin[1];
+// 	while (i < dims[0])
+// 	{
+// 		j = 0;
+// 		while (j < dims[1])
+// 		{
+// 			if (tmp2)
+// 				ind = i * dims[1] + j;
+// 			else
+// 				ind = i * dims[0] + j;
+// 			tab_points[ind][0] = tmp[0];
+// 			tab_points[ind][1] = tmp[1] - map[ind].alt * dims[2];
+// 			tmp[0] -= round(hyp * 0.866);
+// 			tmp[1] += round(hyp / 2);
+// 			j++;	
+// 		}
+// 		origin[0] += round(hyp * 0.866);
+// 		origin[1] += round(hyp / 2);
+// 		tmp[0] = origin[0];
+// 		tmp[1] = origin[1];
+// 		i++;
+// 	}
+// 	return (tab_points);
+// }
+
+// void read_tab_test(int **tab_points, int *dims)
+// {
+// 	int	i;
+// 	int	j;
+// 	int	ind;
+
+// 	i = 0;
+// 	while (i < dims[0])
+// 	{
+// 		j = 0;
+// 		while (j < dims[1])
+// 		{
+// 			ind = i * dims[0] + j;
+// 			ft_printf("%d: %d,%d ", ind, tab_points[ind][0], tab_points[ind][1]);
+// 			j++;	
+// 		}
+// 		ft_printf("\n");
+// 		i++;
+// 	}	
+// }
 
 // int create_map(int hyp, int *dimensions, int *origin, t_data img, t_point *map)
 // {

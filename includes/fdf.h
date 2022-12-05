@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/01 16:29:04 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/05 17:20:22 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,5 +98,9 @@ void read_tab_test(int **tab_points, int *dims);
 
 /* Map Plotting */
 void	plot_map(t_data img, t_point *map, int *dims, int hyp, int **points);
+
+/* Ft_int_biggest_first */
+int	ft_int_biggest_first(int *a, int *b);
+
 /* Merci a Danil de savoir lire*/
 #endif

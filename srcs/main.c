@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/01 17:33:29 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/05 18:24:06 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int main (int ac, char **av)
 	int		line_len;
 	int		**points;
 
-	int hyp = 50;
+	int hyp = 10;
 	int *a;
 	// int *b;
 	// int c[2];
@@ -143,12 +143,12 @@ int main (int ac, char **av)
 		// c[0] = tab_points[1][0];
 		// c[1] = tab_points[1][1];
 		// ft_printf("C[x]=%d, C[y]=%d\n", c[0], c[1]);
-		dimensions[0] = line_number;
-		dimensions[1] = line_len;
-		dimensions[2] = 20; //SCALE
-		points = create_tab(hyp, dimensions, a, map);
-		read_tab_test(points, dimensions);
-		plot_map(img, map, dimensions, hyp, points);
+		// dimensions[0] = line_number;
+		// dimensions[1] = line_len;
+		// dimensions[2] = 10; //SCALE
+		// points = create_tab(hyp, dimensions, a, map);
+		// read_tab_test(points, dimensions);
+		// plot_map(img, map, dimensions, hyp, points);
 		// create_map(hyp, dimensions, a, img, map);
 		// plot_line(img, b, a, 0xFFFFFF); //BLEU
 		// plot_line(img, a, c, 0xFFFFFF); //JAUNE
