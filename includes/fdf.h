@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/05 17:20:22 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/05 19:15:18 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,30 +77,32 @@ void	mlx_spp(t_data *data, int x, int y, int color);
 /* Memory Cleaning*/
 void	**ft_free_strs(char **strs);
 void	**ft_free_int_tab_2(int **tab, int len_tab);
+void	***ft_free_int_tab_3(int ***tab, int len_tab, int len_subtab);
 
 /* Memory Allocation */
-int	**ft_calloc_int_tab_2(int len_tab, int len_subtab);
+int		***ft_calloc_int_tab_3(int len_tab, int len_subtab, int len_subsubtab);
 
 /* Atoul */
 unsigned int	ft_atou_hexa(const char *str);
 
-/* Parsing */
+/* Parsing 1*/
 t_point	*parsing(const char *map_name, int *line_number, int *line_len);
 
 /* Math functions*/
 long	power(int nb, int power);
-int	ft_rev_bigger(int *a, int *b);
+int		ft_rev_bigger(int *a, int *b);
 
 /* Mapping */
-int create_map(int hyp, int *dimensions, int *origin, t_data img, t_point *map);
-int	**create_tab(int hyp, int *dims, int *origin, t_point *map);
-void read_tab_test(int **tab_points, int *dims);
+int		create_map(int hyp, int *dimensions, int *origin, t_data img, 
+		t_point *map);
+int		**create_tab(int hyp, int *dims, int *origin, t_point *map);
+void	read_tab_test(int **tab_points, int *dims);
 
 /* Map Plotting */
 void	plot_map(t_data img, t_point *map, int *dims, int hyp, int **points);
 
 /* Ft_int_biggest_first */
-int	ft_int_biggest_first(int *a, int *b);
+int		ft_int_biggest_first(int *a, int *b);
 
 /* Merci a Danil de savoir lire*/
 #endif

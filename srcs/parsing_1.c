@@ -1,18 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_1.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/05 18:30:31 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/05 19:22:35 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-
 
 // static void	pixel_maker(t_point *map, int ind, char *info)
 // {
@@ -94,7 +92,7 @@
 // 	mapper(fd, &map, height, width);
 // 	close(fd);
 // 	free(path_to_map);
-	
+
 // 	int i = 0;
 // 	int j = 0;
 // 	while (i < *height)
@@ -131,11 +129,11 @@ static int	get_width(const char *path_to_map, int *width)
 	return (1);
 }
 
-static int get_height(const char *path_to_map, int *height)
+static int	get_height(const char *path_to_map, int *height)
 {
 	int		fd;
 	char	*buff;
-	
+
 	fd = open(path_to_map, O_RDONLY);
 	if (fd == -1)
 		return (-2);
@@ -156,6 +154,8 @@ t_point	*parsing(const char *map_name, int *height, int *width)
 {
 	t_point	*map;
 	char	*path;
+	int		***tab;
+	int	i;
 
 	path = ft_strjoin("test_maps/", map_name);
 	ft_printf("Accessing %s...\n", path);
@@ -163,6 +163,11 @@ t_point	*parsing(const char *map_name, int *height, int *width)
 		return (perror("Problem in file\n"), free(path), NULL);
 	printf("%dx%d\n", *height, *width);
 	map = NULL;
+	tab = ft_calloc_int_tab_3(*height, *width, 2);
+	if (!tab)
+		return (perror("Problem with creating tab"), free(path), NULL);
+	i = 0;
+	while (i < *height)
 	free(path);
 	return (map);
 }

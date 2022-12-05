@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/05 17:21:26 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/05 19:15:13 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					colors_2 \
 					line_plotting_1 \
 					line_plotting_2 \
-					parsing \
+					parsing_1 \
 					memory_cleaning \
 					ft_atou_hexa \
 					math_functions \
