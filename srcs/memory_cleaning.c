@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:03:38 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/05 19:06:55 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/06 15:13:25 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ void	**ft_free_strs(char **strs)
 void	***ft_free_int_tab_3(int ***tab, int len_tab, int len_subtab)
 {
 	int	i;
-	int	j;
 	
 	i = 0;
 	while (i < len_tab)
 	{
 		ft_free_int_tab_2(tab[i], len_subtab);
+		tab[i] = NULL;
 		i++;
 	}
 	free(tab);
@@ -49,6 +49,7 @@ void	**ft_free_int_tab_2(int **tab, int len_tab)
 	while (i < len_tab)
 	{
 		free(tab[i]);
+		tab[i] = NULL;
 		i++;
 	}
 	free(tab);

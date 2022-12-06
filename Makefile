@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/05 19:15:13 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/06 19:46:32 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,7 +103,6 @@ libft_clean:
 
 libft_fclean:
 	@make -C ${LIBFTDIR} fclean
-
 
 libft_re:
 	@make -C ${LIBFTDIR} re

@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:23:43 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/05 16:31:19 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/06 17:43:19 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,43 +187,77 @@
 // }
 
 
-void plot_map(t_data img, t_point *map, int *dims, int hyp, int **points)
+// void plot_map(t_data img, int height, int width, int hyp, int ***points)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	j = 0;
+// 	while (i < dims[1])
+// 	{
+// 		j = 0;
+// 		while (j < dims[0])
+// 		{
+// 			if (j < dims[0] - 1) //pas derniere colone
+// 			{
+// 				if ((points[i * dims[0] + j][1] > points[i * dims[0] + (j + 1)][1]))
+// 					plot_line(&img, points[i * dims[0] + j], points[i * dims[0] + (j + 1)], 0xFFFFFF);
+// 				else
+// 					plot_line(&img, points[i * dims[0] + (j + 1)], points[i * dims[0] + j], 0xFFFFFF);
+// 			}
+// 			if (i < dims[1] - 1) //pas derniere ligne
+// 			{
+// 				if ((points[i * dims[0] + j][1] > points[(i + 1) * dims[0] + j][1]) && (points[i * dims[0] + j][0] < points[(i + 1) * dims[0] + j][0]))
+// 					plot_line(&img, points[i * dims[0] + j], points[(i + 1) * dims[0] + j], 0xFFFFFF);
+// 				else if ((points[i * dims[0] + j][1] < points[(i + 1) * dims[0] + j][1]) && (points[i * dims[0] + j][0] < points[(i + 1) * dims[0] + j][0]))
+// 					plot_line(&img, points[(i + 1) * dims[0] + j], points[i * dims[0] + j], 0xFFFFFF);
+// 				else
+// 					plot_line(&img, points[i * dims[0] + j], points[(i + 1) * dims[0] + j], 0xFFFFFF);
+// 			}
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
+
+
+void	plot_points(t_data img, int ***points, int height, int width)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	j = 0;
-	while (i < dims[1])
+	while (i < height)
 	{
 		j = 0;
-		while (j < dims[0])
+		while (j < width)
 		{
-			if (j < dims[0] - 1) //pas derniere colone
+			// ft_printf("i = %d, j = %d\n", i, j);
+			if (j < width - 1)
 			{
-				if ((points[i * dims[0] + j][1] > points[i * dims[0] + (j + 1)][1]))
-					plot_line(&img, points[i * dims[0] + j], points[i * dims[0] + (j + 1)], 0xFFFFFF);
-				else
-					plot_line(&img, points[i * dims[0] + (j + 1)], points[i * dims[0] + j], 0xFFFFFF);
+				ft_printf("1.Linking points[%d][%d] with points[%d][%d]\n", i, j, i, j + 1);
+				plot_line(&img, points[i][j], points[i][j + 1], 0x00FF00 + j * 200);
 			}
-			if (i < dims[1] - 1) //pas derniere ligne
+			if (i < height - 1)
 			{
-				if ((points[i * dims[0] + j][1] > points[(i + 1) * dims[0] + j][1]) && (points[i * dims[0] + j][0] < points[(i + 1) * dims[0] + j][0]))
-					plot_line(&img, points[i * dims[0] + j], points[(i + 1) * dims[0] + j], 0xFFFFFF);
-				else if ((points[i * dims[0] + j][1] < points[(i + 1) * dims[0] + j][1]) && (points[i * dims[0] + j][0] < points[(i + 1) * dims[0] + j][0]))
-					plot_line(&img, points[(i + 1) * dims[0] + j], points[i * dims[0] + j], 0xFFFFFF);
-				else
-					plot_line(&img, points[i * dims[0] + j], points[(i + 1) * dims[0] + j], 0xFFFFFF);
+				ft_printf("2.Linking points[%d][%d] with points[%d][%d]\n", i, j, i + 1, j);
+				// if (points[i][j][1] > points[i + 1][j][1] 
+				// && points[i][j][0] < points[i + 1][j][0])
+				plot_line(&img, points[i][j], points[i + 1][j], 0xFFFFFF);
+				// else if (points[i][j][1] < points[i + 1][j][1]
+				// && points[i][j][0] < points[i + 1][j][0])
+				// 	plot_line(&img, points[i + 1][j], points[i][j], 0xFFFFFF);
+				// else
+				// 	plot_line(&img, points[i][j], points[i + 1][j], 0xFFFFFF);
 			}
 			j++;
 		}
 		i++;
 	}
+	// ft_printf("Has reached end of function\n");
 }
-
-
-
-
 
 
 

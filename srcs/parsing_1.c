@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/05 19:22:35 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/06 19:51:19 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,126 @@
 // 	}
 // 	return (map);
 // }
+static void	basic_placing(int ***points, int height, int width, int *to_define)
+{
+	int	i;
+	int	j;
+	int	x;
+	int	y;
+	int	hyp;
+
+	i = 0;
+	x = to_define[0];
+	y = to_define[1];
+	hyp = to_define[2];
+	while (i < height)
+	{
+		j = 0;
+		x = to_define[0];
+		while (j < width)
+		{
+			points[i][j][0] = x;
+			points[i][j][1] = y;
+			x += hyp;
+			j++;
+		}
+		y += hyp;
+		i++;
+	}
+}
+
+static void	print_tab_3(int ***points, int height, int width)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			ft_printf("%d,%d ", points[i][j][0], points[i][j][1]);
+			j++;
+		}
+		ft_printf("\n");
+		i++;
+	}
+}
+
+// static void	iso(int ***points, int height, int width, int hyp, double angle)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	while (i < height)
+// 	{
+// 		j = 0;
+// 		while (j < width)
+// 		{
+// 			if (j == 0 && i > 0)
+// 			{
+// 				points[i][j][0] = points[i - 1][j][0] + hyp * cos(angle);
+// 				ft_printf("Moved\n");
+				
+// 			}
+// 			else if (i > 0)
+// 				points[i][j][0] = points[i - 1][j][0] - hyp * cos(angle);
+// 			else
+// 				points[i][j][0] -= hyp * cos(angle);
+// 			points[i][j][1] += hyp * sin(angle);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// }
+
+static void	iso(int ***points, int height, int width, int hyp, double angle)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			if (j == 0 && i > 0)
+			{
+				points[i][j][0] = points[i - 1][j][0] + hyp * cos(angle);
+				ft_printf("Moved\n");
+				
+			}
+			else if (i > 0)
+				points[i][j][0] = points[i - 1][j][0] - hyp * cos(angle);
+			else
+				points[i][j][0] -= hyp * cos(angle);
+			points[i][j][1] += hyp * sin(angle);
+			j++;
+		}
+		i++;
+	}
+}
+// static void	print_tab_3(int ***points, int height, int width)
+// {
+// 	int	i;
+// 	int	j;
+
+// 	i = 0;
+// 	while (i < height)
+// 	{
+// 		j = 0;
+// 		while (j < width)
+// 		{
+// 			ft_printf("%d,%d ", points[i][j][0], points[i][j][1]);
+// 			j++;
+// 		}
+// 		ft_printf("\n");
+// 		i++;
+// 	}
+// }
 
 static int	get_width(const char *path_to_map, int *width)
 {
@@ -120,10 +240,10 @@ static int	get_width(const char *path_to_map, int *width)
 		return (-2);
 	buff = get_next_line(fd);
 	buff_splitted = ft_split(buff, ' ');
+	free(buff);
 	*width = 0;
 	while (buff_splitted[(*width)])
 		(*width)++;
-	free(buff);
 	ft_free_strs(buff_splitted);
 	close(fd);
 	return (1);
@@ -150,26 +270,29 @@ static int	get_height(const char *path_to_map, int *height)
 	return (1);
 }
 
-t_point	*parsing(const char *map_name, int *height, int *width)
+int	***parsing(const char *map_name, int *height, int *width)
 {
-	t_point	*map;
 	char	*path;
-	int		***tab;
-	int	i;
+	int		***points;
 
 	path = ft_strjoin("test_maps/", map_name);
 	ft_printf("Accessing %s...\n", path);
 	if (get_height(path, height) == -2 || get_width(path, width) == -2)
 		return (perror("Problem in file\n"), free(path), NULL);
 	printf("%dx%d\n", *height, *width);
-	map = NULL;
-	tab = ft_calloc_int_tab_3(*height, *width, 2);
-	if (!tab)
+	points = ft_calloc_int_tab_3(*height, *width, 2);
+	if (!points)
 		return (perror("Problem with creating tab"), free(path), NULL);
-	i = 0;
-	while (i < *height)
-	free(path);
-	return (map);
+	
+
+	int		to_define[3];
+	to_define[0] = 500; //START X
+	to_define[1] = 500;	//START Y
+	to_define[2] = 50;	//HYPOTHENUSE
+	basic_placing(points, *height, *width, to_define);
+	iso(points, *height, *width, to_define[2], (30 * PI) / 180);
+	print_tab_3(points, *height, *width);
+	return (free(path), points);
 }
 
 // int	main(void)

@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/05 18:24:06 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/06 17:18:51 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,52 +70,52 @@
 // }
 
 
-void    line_test(int *p1, int *p2, t_data *img)
-{
+// void    line_test(int *p1, int *p2, t_data *img)
+// {
 
-    p1[0] = 400;
-    p1[1] = 400;
+//     p1[0] = 400;
+//     p1[1] = 400;
 
-	p2[0] = 10;
-	p2[1] = 10;
-	while (p2[0] <= 800)
-	{
-        plot_line(img, p1, p2, 0xFFFFFF);
+// 	p2[0] = 10;
+// 	p2[1] = 10;
+// 	while (p2[0] <= 800)
+// 	{
+//         plot_line(img, p1, p2, 0xFFFFFF);
 
-		++(p2[0]);
-	}
-	while (p2[1] <= 800)
-	{
-        plot_line(img, p1, p2, 0xFFFFFF);
+// 		++(p2[0]);
+// 	}
+// 	while (p2[1] <= 800)
+// 	{
+//         plot_line(img, p1, p2, 0xFFFFFF);
 
-		++(p2[1]);
-	}
-	while (p2[0] >= 10)
-	{
-        plot_line(img, p1, p2, 0xFFFFFF);
+// 		++(p2[1]);
+// 	}
+// 	while (p2[0] >= 10)
+// 	{
+//         plot_line(img, p1, p2, 0xFFFFFF);
 
-		--(p2[0]);
-	}
-	while (p2[1] >= 10)
-	{
-        plot_line(img, p1, p2, 0xFFFFFF);
+// 		--(p2[0]);
+// 	}
+// 	while (p2[1] >= 10)
+// 	{
+//         plot_line(img, p1, p2, 0xFFFFFF);
 
-		--(p2[1]);
-	}
-	// while (p2[1])
+// 		--(p2[1]);
+// 	}
+// 	// while (p2[1])
     
-}
+// }
 
 int main (int ac, char **av)
 {
 	t_vars	vars;
 	t_data	img;
 	t_point	*map;
-	int		line_number;
-	int		line_len;
-	int		**points;
+	int		height;
+	int		width;
+	int		***points;
 
-	int hyp = 10;
+	int hyp = 50;
 	int *a;
 	// int *b;
 	// int c[2];
@@ -135,8 +135,9 @@ int main (int ac, char **av)
 		vars.win = mlx_new_window(vars.mlx, WINDOW_X, WINDOW_Y, "Il est lent ce lait");
 		img.img = mlx_new_image(vars.mlx, WINDOW_X, WINDOW_Y);
 		img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len, &img.endian);
-		// line_test(a, b, &img);
-		map = parsing(av[1], &line_number, &line_len);
+		
+		points = parsing(av[1], &height, &width);
+		plot_points(img, points, height, width);
 		// tab_points = get_plan_points(hyp, line_number, line_len, a);
 		// b[0] = tab_points[0][0];
 		// b[1] = tab_points[0][1];
@@ -184,14 +185,16 @@ int main (int ac, char **av)
 		// b[0] = 650;
 		// b[1] = 290;
 		// plot_line(img, a, b , 0xFFFFFF);
+		// ft_printf("NOT Segfaulting before pushing image\n");
 		mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 		mlx_hook(vars.win, ON_KEYDOWN, KEYPRESS_MASK, key_listener, &vars);
 		mlx_hook(vars.win, ON_DESTROY, NO_MASK, on_destroy, &vars);
-		free(map);
 		mlx_loop(vars.mlx);
+		// free_map(map);
 	}
 	else
 		ft_printf("Provide a map name please\n");
+	free(a);
 	return (0);
 }
 
