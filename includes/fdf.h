@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/06 17:03:41 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/07 12:31:46 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +78,12 @@ void	mlx_spp(t_data *data, int x, int y, int color);
 void	**ft_free_strs(char **strs);
 void	**ft_free_int_tab_2(int **tab, int len_tab);
 void	***ft_free_int_tab_3(int ***tab, int len_tab, int len_subtab);
-void	*free_map(t_point *map);
+void	**free_map(t_point **map, int height);
+
 
 /* Memory Allocation */
 int		***ft_calloc_int_tab_3(int len_tab, int len_subtab, int len_subsubtab);
-
+t_point **map_malloc(int height, int width);
 /* Atoul */
 unsigned int	ft_atou_hexa(const char *str);
 

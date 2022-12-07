@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 20:23:43 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/06 17:43:19 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/07 13:55:41 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,12 +237,12 @@ void	plot_points(t_data img, int ***points, int height, int width)
 			// ft_printf("i = %d, j = %d\n", i, j);
 			if (j < width - 1)
 			{
-				ft_printf("1.Linking points[%d][%d] with points[%d][%d]\n", i, j, i, j + 1);
-				plot_line(&img, points[i][j], points[i][j + 1], 0x00FF00 + j * 200);
+				// ft_printf("1.Linking points[%d][%d] with points[%d][%d]\n", i, j, i, j + 1);
+				plot_line(&img, points[i][j], points[i][j + 1], 0xFFFFFF);
 			}
 			if (i < height - 1)
 			{
-				ft_printf("2.Linking points[%d][%d] with points[%d][%d]\n", i, j, i + 1, j);
+				// ft_printf("2.Linking points[%d][%d] with points[%d][%d]\n", i, j, i + 1, j);
 				// if (points[i][j][1] > points[i + 1][j][1] 
 				// && points[i][j][0] < points[i + 1][j][0])
 				plot_line(&img, points[i][j], points[i + 1][j], 0xFFFFFF);
