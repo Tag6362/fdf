@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:20:31 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 15:05:08 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/07 15:12:54 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	iso(int ***pts, int *dims, double ang)
 	}
 }
 
-void	alt_adding(int ***pts, int *dims, t_point **map)
+void	alt_adding(int ***pts, int *dims, t_point **map, int scale)
 {
 	int	i;
 	int	j;
@@ -109,7 +109,7 @@ void	alt_adding(int ***pts, int *dims, t_point **map)
 		j = 0;
 		while (j < dims[1])
 		{
-			pts[i][j][1] -= map[i][j].alt * 2;
+			pts[i][j][1] -= map[i][j].alt * scale;
 			j++;
 		}
 		i++;

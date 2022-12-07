@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 15:02:50 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/07 15:52:53 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define NO_MASK 0L
 # define KEYPRESS_MASK 1L<<0
 # define BUTTONPRESS_MASK 1l<<2
-# define WINDOW_X 1500
-# define WINDOW_Y 900
+# define WINDOW_X 1920
+# define WINDOW_Y 1080
 
 
 typedef struct	s_data {
@@ -75,7 +75,11 @@ int		***parsing(const char *map_name, int *h, int *w, t_point ***map);
 /* Parsing 2 */
 t_point	**map_making(char *path, int *dims, int fd);
 void	iso(int ***pts, int *dims, double ang);
-void	alt_adding(int ***pts, int *dims, t_point **map);
+void	alt_adding(int ***pts, int *dims, t_point **map, int scale);
+
+/* Centring */
+int *find_start_coords(t_point **map, int height, int width, double angle);
+
 
 /* Merci a Danil de savoir lire*/
 #endif

@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 15:03:20 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/07 15:52:43 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int main (int ac, char **av)
 		dims[0] = height;
 		dims[1] = width;
 		plot_points(img, points, dims, map);
+		find_start_coords(map, height, width, (30 * PI) / 180);
 		mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 		mlx_hook(vars.win, ON_KEYDOWN, KEYPRESS_MASK, key_listener, &vars);
 		mlx_hook(vars.win, ON_DESTROY, NO_MASK, on_destroy, &vars);
