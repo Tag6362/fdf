@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 12:31:46 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/07 15:02:50 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,31 +48,13 @@ typedef struct	s_point {
 /* ---PROTOS--- */
 /* Main */
 
-/* Colors 1*/
-int create_trgb(int t, int r, int g, int b);
-int get_t(int trgb);
-int get_r(int trgb);
-int get_g(int trgb);
-int get_b(int trgb);
-
-/* Colors 2*/
-int	add_shade(int trgb, float shade);
-int	color_opposite(int color);
-
 /* Events Window */
 int	key_listener(int keycode, t_vars *vars);
 int	on_destroy(t_vars *vars);
 int	on_mouse_down(int button, int x, int y, t_vars *vars);
 
-/* Line Plotting 1*/
-
-void	plot_line(t_data *img, int *p1, int *p2, unsigned int color);
-void	bres_plot_high(t_data *img, int *p1, int *p2, unsigned int color);
-void	bres_plot_low(t_data *img, int *p1, int *p2, unsigned int color);
-
-/* Line Plotting 2*/
-void	plot_line_vertical(t_data img, int *p1, int *p2, unsigned int col);
-void	mlx_spp(t_data *data, int x, int y, int color);
+/* Plotting */
+void	plot_points(t_data img, int ***pts, int *dims, t_point **map);
 
 /* Memory Cleaning*/
 void	**ft_free_strs(char **strs);
@@ -80,31 +62,20 @@ void	**ft_free_int_tab_2(int **tab, int len_tab);
 void	***ft_free_int_tab_3(int ***tab, int len_tab, int len_subtab);
 void	**free_map(t_point **map, int height);
 
-
 /* Memory Allocation */
 int		***ft_calloc_int_tab_3(int len_tab, int len_subtab, int len_subsubtab);
 t_point **map_malloc(int height, int width);
+
 /* Atoul */
 unsigned int	ft_atou_hexa(const char *str);
 
-/* Parsing 1*/
-int		***parsing(const char *map_name, int *line_number, int *line_len);
+/* Parsing 1 */
+int		***parsing(const char *map_name, int *h, int *w, t_point ***map);
 
-/* Math functions*/
-long	power(int nb, int power);
-int		ft_rev_bigger(int *a, int *b);
-
-/* Mapping */
-int		create_map(int hyp, int *dimensions, int *origin, t_data img, 
-		t_point *map);
-int		**create_tab(int hyp, int *dims, int *origin, t_point *map);
-void	read_tab_test(int **tab_points, int *dims);
-
-/* Map Plotting */
-void	plot_points(t_data img, int ***points, int height, int width);
-
-/* Ft_int_biggest_first */
-int		ft_int_biggest_first(int *a, int *b);
+/* Parsing 2 */
+t_point	**map_making(char *path, int *dims, int fd);
+void	iso(int ***pts, int *dims, double ang);
+void	alt_adding(int ***pts, int *dims, t_point **map);
 
 /* Merci a Danil de savoir lire*/
 #endif

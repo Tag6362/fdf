@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/28 10:20:42 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 12:37:03 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/07 15:03:10 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@ int	***ft_calloc_int_tab_3(int len_tab, int len_subtab, int len_subsubtab)
 	return (tab);
 }
 
-t_point **map_malloc(int height, int width)
+t_point	**map_malloc(int height, int width)
 {
-	int	i;
-	int j;
-	t_point **map;
+	int		i;
+	t_point	**map;
 
 	i = 0;
 	map = malloc(sizeof(t_point *) * height);

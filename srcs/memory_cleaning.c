@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:03:38 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 12:30:05 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/07 15:01:28 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	**ft_free_strs(char **strs)
 void	***ft_free_int_tab_3(int ***tab, int len_tab, int len_subtab)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < len_tab)
 	{

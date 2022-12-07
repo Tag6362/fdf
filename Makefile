@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/06 19:46:32 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/07 15:01:52 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,18 +17,12 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					$(addprefix ${DIRSRCS},	\
 					main \
 					events_window \
-					colors_1 \
-					colors_2 \
-					line_plotting_1 \
-					line_plotting_2 \
+					plotting \
 					parsing_1 \
-					memory_cleaning \
+					parsing_2 \
 					ft_atou_hexa \
-					math_functions \
+					memory_cleaning \
 					memory_allocation \
-					mapping \
-					map_plotting \
-					ft_int_biggest_first \
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
