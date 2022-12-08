@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 15:17:40 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/08 11:03:44 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,16 @@ int	***parsing(const char *map_name, int *height, int *width, t_point ***map)
 		
 	int		to_define[3];
 	int		dims[3];
-	to_define[0] = 500; //START X
-	to_define[1] = 500;	//START Y
+	to_define[0] = 240; //START X
+	to_define[1] = 740;	//START Y
 	dims[0] = *height;
 	dims[1] = *width;
-	dims[2] = 30; //HYPOTHENUSE
+	dims[2] = 52; //HYPOTHENUSE
 	points[0][0][0] = to_define[0];
 	points[0][0][1] = to_define[1];
 	iso(points, dims, (30 * PI) / 180);
 	*map = map_making(path, dims, 0);
-	alt_adding(points, dims, *map, 20);
+	alt_adding(points, dims, *map, 30);
 	return (free(path), points);
 }
 

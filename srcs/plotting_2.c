@@ -1,27 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   line_plotting_1.c                                  :+:      :+:    :+:   */
+/*   plotting_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 14:47:33 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 14:48:27 by tgernez          ###   ########.fr       */
+/*   Created: 2022/12/08 11:14:31 by tgernez           #+#    #+#             */
+/*   Updated: 2022/12/08 11:50:36 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
-static void	mlx_spp(t_data *data, int x, int y, int color)
-{
-	char *dst;
-
-	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-static void	bres_plot_low(t_data *img, int *p1, int *p2, unsigned int color)
+static void	bres_plot_low_dg(t_data *img, int *p1, int *p2, unsigned int color)
 {
 	int	x;
 	int	y;
@@ -37,7 +28,7 @@ static void	bres_plot_low(t_data *img, int *p1, int *p2, unsigned int color)
 	while (++x < p2[0])
 	{
 		mlx_spp(img, x, y, color);
-		if (bres_val > 0)
+		if (bres_val > 0 && color++ > 0)
 		{
 			y += sign_delta_y;
 			bres_val += 2 * (delta_y - (p2[0] - p1[0]));
@@ -47,7 +38,7 @@ static void	bres_plot_low(t_data *img, int *p1, int *p2, unsigned int color)
 	}
 }
 
-static void	bres_plot_high(t_data *img, int *p1, int *p2, unsigned int color)
+static void	bres_plot_high_dg(t_data *img, int *p1, int *p2, unsigned int color)
 {
 	int	x;
 	int	y;
@@ -63,7 +54,7 @@ static void	bres_plot_high(t_data *img, int *p1, int *p2, unsigned int color)
 	while (++y < p2[1])
 	{
 		mlx_spp(img, x, y, color);
-		if (bres_val > 0)
+		if (bres_val > 0 && color-- > 0)
 		{
 			x += sign_delta_x;
 			bres_val += 2 * (delta_x - (p2[1] - p1[1]));
@@ -73,41 +64,64 @@ static void	bres_plot_high(t_data *img, int *p1, int *p2, unsigned int color)
 	}
 }
 
-static void	plot_line(t_data *img, int *p1, int *p2, unsigned int color)
+void plot_line_deg_1(t_data *img, int ***pts, int *dims, t_point **map)
 {
+	int				i;
+	int				j;
+	int				*p1;
+	int				*p2;
+	unsigned int	color;
+
+	i = dims[0];
+	j = dims[1];
+	color = map[i][j].color;
+	p1 = pts[i][j];
+	p2 = pts[i][j + 1];
+	ft_printf("Entring 1\n");
 	if (abs(p2[0] - p1[0]) > abs(p2[1] - p1[1]))
 	{
 		if (p2[0] > p1[0])
-			bres_plot_low(img, p1, p2, color);
+			bres_plot_low_dg(img, p1, p2, color);
 		else
-			bres_plot_low(img, p2, p1, color);
+			bres_plot_low_dg(img, p2, p1, color);
 	}
 	else
 	{
 		if (p2[1] > p1[1])
-			bres_plot_high(img, p1, p2, color);
+			bres_plot_high_dg(img, p1, p2, color);
 		else
-			bres_plot_high(img, p2, p1, color);
+			bres_plot_high_dg(img, p2, p1, color);
 	}
+	ft_printf("Leaving 1\n");
 }
 
-void	plot_points(t_data img, int ***pts, int *dims, t_point **map)
+void plot_line_deg_2(t_data *img, int ***pts, int *dims, t_point **map)
 {
-	int	i;
-	int	j;
+	int				i;
+	int				j;
+	int				*p1;
+	int				*p2;
+	unsigned int	color;
 
-	i = 0;
-	while (i < dims[0])
+	i = dims[0];
+	j = dims[1];
+	color = map[i][j].color;
+	p1 = pts[i][j];
+	p2 = pts[i + 1][j];
+	ft_printf("Entring 2\n");
+	if (abs(p2[0] - p1[0]) > abs(p2[1] - p1[1]))
 	{
-		j = 0;
-		while (j < dims[1])
-		{
-			if (j < dims[1] - 1)
-				plot_line(&img, pts[i][j], pts[i][j + 1], map[i][j].color);
-			if (i < dims[0] - 1)
-				plot_line(&img, pts[i][j], pts[i + 1][j], map[i][j].color);
-			j++;
-		}
-		i++;
+		if (p2[0] > p1[0])
+			bres_plot_low_dg(img, p1, p2, color);
+		else
+			bres_plot_low_dg(img, p2, p1, color);
 	}
+	else
+	{
+		if (p2[1] > p1[1])
+			bres_plot_high_dg(img, p1, p2, color);
+		else
+			bres_plot_high_dg(img, p2, p1, color);
+	}
+	ft_printf("Leaving 2\n");
 }

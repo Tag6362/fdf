@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 15:52:53 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/08 11:27:49 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,13 @@ int	key_listener(int keycode, t_vars *vars);
 int	on_destroy(t_vars *vars);
 int	on_mouse_down(int button, int x, int y, t_vars *vars);
 
-/* Plotting */
+/* Plotting 1 */
 void	plot_points(t_data img, int ***pts, int *dims, t_point **map);
+void	mlx_spp(t_data *data, int x, int y, int color);
+
+/* Plotting 2 */
+void plot_line_deg_1(t_data *img, int ***pts, int *dims, t_point **map);
+void plot_line_deg_2(t_data *img, int ***pts, int *dims, t_point **map);
 
 /* Memory Cleaning*/
 void	**ft_free_strs(char **strs);

@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:20:31 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 15:12:54 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/08 11:08:32 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,10 @@ void	alt_adding(int ***pts, int *dims, t_point **map, int scale)
 		while (j < dims[1])
 		{
 			pts[i][j][1] -= map[i][j].alt * scale;
+			if (pts[i][j][1] > WINDOW_Y)
+				pts[i][j][1] = WINDOW_Y;
+			if (pts[i][j][1] < 0)
+				pts[i][j][1] = 0;
 			j++;
 		}
 		i++;
