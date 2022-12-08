@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:47:33 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/08 13:50:36 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:00:28 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	bres_plot_high(t_data *img, int *p1, int *p2, unsigned int color)
 	}
 }
 
-static void	plot_line(t_data *img, int *p1, int *p2, unsigned int color)
+void	plot_line(t_data *img, int *p1, int *p2, unsigned int color)
 {
 	if (abs(p2[0] - p1[0]) > abs(p2[1] - p1[1]))
 	{

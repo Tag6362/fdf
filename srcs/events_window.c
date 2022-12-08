@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:05:37 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/08 14:34:22 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:00:03 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int mouse_listener(int button, int x, int y, t_data *img)
 {
 	// if (button == 1) //Left Click
 	// 	zoom(void);
-	if (button == 3) //Right Click
-		dezoom(void);
+	// if (button == 3) //Right Click
+	// 	dezoom(void);
 	if (button == 4) // Scroll Up
 		up_alt(*img);
-	if (button == 5) // Scroll Down
-		down_alt(*img);
+	// if (button == 5) // Scroll Down
+	// 	down_alt(*img);
 	ft_printf("%d\n", button);
 	return (0);
 }

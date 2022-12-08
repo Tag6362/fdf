@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/08 14:13:13 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/08 15:08:39 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ typedef struct	s_data {
 
 /* ---PROTOS--- */
 /* Main */
-void image_and_hooks(t_data img);
-int	init(char *map_name);
+void	put_image_and_hooks(t_data img);
+t_data	*init(char *map_name);
 
 /* Events Window */
 int	key_listener(int keycode, t_data *img);
@@ -60,6 +60,7 @@ int mouse_listener(int button, int x, int y, t_data *img);
 /* Plotting 1 */
 void	plot_points(t_data img, int ***pts, int *dims, t_point **map);
 void	mlx_spp(t_data *data, int x, int y, int color);
+void	plot_line(t_data *img, int *p1, int *p2, unsigned int color);
 
 /* Plotting 2 */
 void plot_line_deg_1(t_data *img, int ***pts, int *dims, t_point **map);
@@ -93,6 +94,9 @@ int *find_start_coords(t_point **map, int height, int width, double angle);
 
 /* Mouse Functions */
 int up_alt(t_data img);
+
+/* Clear Image */
+void clear_image(t_data img);
 
 /* Merci a Danil de savoir lire*/
 #endif
