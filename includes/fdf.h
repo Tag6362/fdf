@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/08 11:27:49 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:13:13 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,32 +26,36 @@
 # define WINDOW_X 1920
 # define WINDOW_Y 1080
 
-
-typedef struct	s_data {
-	void	*img;
-	void	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}				t_data;
-
-typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
-
 typedef struct	s_point {
 	int				alt;
 	unsigned int	color;
 }				t_point;
 
+typedef struct	s_data {
+	void	*img;
+	void	*addr;
+	int		bpp;
+	int		llen;
+	int		end;
+	void	*mlx;
+	void	*win;
+	double	angle;
+	t_point	***map;
+	int		****points;
+	int		**dims;
+	char	**map_name;
+}				t_data;
+
+
 /* ---PROTOS--- */
 /* Main */
+void image_and_hooks(t_data img);
+int	init(char *map_name);
 
 /* Events Window */
-int	key_listener(int keycode, t_vars *vars);
-int	on_destroy(t_vars *vars);
-int	on_mouse_down(int button, int x, int y, t_vars *vars);
+int	key_listener(int keycode, t_data *img);
+int	on_destroy(t_data *img);
+int mouse_listener(int button, int x, int y, t_data *img);
 
 /* Plotting 1 */
 void	plot_points(t_data img, int ***pts, int *dims, t_point **map);
@@ -75,16 +79,20 @@ t_point **map_malloc(int height, int width);
 unsigned int	ft_atou_hexa(const char *str);
 
 /* Parsing 1 */
-int		***parsing(const char *map_name, int *h, int *w, t_point ***map);
+int	***parsing(const char *map_name, int **dims, double angle, t_point ***map);
+double	glo_scale(int op);
 
 /* Parsing 2 */
 t_point	**map_making(char *path, int *dims, int fd);
 void	iso(int ***pts, int *dims, double ang);
-void	alt_adding(int ***pts, int *dims, t_point **map, int scale);
+void	alt_adding(int ***pts, int *dims, t_point **map, double scale);
+
 
 /* Centring */
 int *find_start_coords(t_point **map, int height, int width, double angle);
 
+/* Mouse Functions */
+int up_alt(t_data img);
 
 /* Merci a Danil de savoir lire*/
 #endif

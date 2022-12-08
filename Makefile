@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/08 11:21:23 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/08 14:52:03 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,15 @@ DIRSRCS 		= srcs/
 SRCS 			=	$(addsuffix ${FTSRCS},	\
 					$(addprefix ${DIRSRCS},	\
 					main \
-					events_window \
 					centring \
-					plotting_1 \
-					plotting_2 \
 					parsing_1 \
 					parsing_2 \
+					plotting_1 \
+					plotting_2 \
+					clear_image \
 					ft_atou_hexa \
+					events_window \
+					mouse_functions \
 					memory_cleaning \
 					memory_allocation \
 					))

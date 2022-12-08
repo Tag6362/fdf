@@ -6,11 +6,28 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/08 11:03:44 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/08 14:29:20 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+double	glo_scale(int op)
+{
+	static double scale = 10;
+	
+	if (op == 1)
+	{
+		scale += 10;		
+		return (scale);
+	}
+	if (op == -1)
+	{
+		scale -= 10;
+		return (scale);
+	}
+	return (scale);
+}
 
 static int	get_width(const char *path_to_map, int *width)
 {
@@ -58,11 +75,15 @@ static int	get_height(const char *path_to_map, int *height)
 	return (1);
 }
 
-int	***parsing(const char *map_name, int *height, int *width, t_point ***map)
+int	***parsing(const char *map_name, int **dims, double angle, t_point ***map)
 {
 	char	*path;
 	int		***points;
+	int		*height;
+	int 	*width;
 
+	height = &((*dims)[0]);
+	width = &((*dims)[1]);
 	path = ft_strjoin("test_maps/", map_name);
 	ft_printf("Accessing %s...\n", path);
 	if (get_height(path, height) == -2 || get_width(path, width) == -2)
@@ -71,19 +92,17 @@ int	***parsing(const char *map_name, int *height, int *width, t_point ***map)
 	points = ft_calloc_int_tab_3(*height, *width, 2);
 	if (!points)
 		return (perror("Problem with creating tab"), free(path), NULL);
-		
+	
 	int		to_define[3];
-	int		dims[3];
 	to_define[0] = 240; //START X
 	to_define[1] = 740;	//START Y
-	dims[0] = *height;
-	dims[1] = *width;
-	dims[2] = 52; //HYPOTHENUSE
+	(*dims)[2] = 20; //HYPOTHENUSE
 	points[0][0][0] = to_define[0];
 	points[0][0][1] = to_define[1];
-	iso(points, dims, (30 * PI) / 180);
-	*map = map_making(path, dims, 0);
-	alt_adding(points, dims, *map, 30);
+	iso(points, *dims, angle);
+	*map = map_making(path, *dims, 1);
+	alt_adding(points, *dims, *map, glo_scale(0));
+	ft_printf("Parsing Done !\n");
 	return (free(path), points);
 }
 
