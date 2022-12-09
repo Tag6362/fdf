@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:14:31 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/08 12:18:34 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 17:15:51 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void plot_line_deg_1(t_data *img, int ***pts, int *dims, t_point **map)
 	color = map[i][j].color;
 	p1 = pts[i][j];
 	p2 = pts[i][j + 1];
-	// ft_printf("Entring 1\n");
 	if (abs(p2[0] - p1[0]) > abs(p2[1] - p1[1]))
 	{
 		if (p2[0] > p1[0])
@@ -92,7 +91,6 @@ void plot_line_deg_1(t_data *img, int ***pts, int *dims, t_point **map)
 		else
 			bres_plot_high_dg(img, p2, p1, color);
 	}
-	// ft_printf("Leaving 1\n");
 }
 
 void plot_line_deg_2(t_data *img, int ***pts, int *dims, t_point **map)
@@ -108,7 +106,6 @@ void plot_line_deg_2(t_data *img, int ***pts, int *dims, t_point **map)
 	color = map[i][j].color;
 	p1 = pts[i][j];
 	p2 = pts[i + 1][j];
-	// ft_printf("Entring 2\n");
 	if (abs(p2[0] - p1[0]) > abs(p2[1] - p1[1]))
 	{
 		if (p2[0] > p1[0])
@@ -123,5 +120,4 @@ void plot_line_deg_2(t_data *img, int ***pts, int *dims, t_point **map)
 		else
 			bres_plot_high_dg(img, p2, p1, color);
 	}
-	// ft_printf("Leaving 2\n");
 }

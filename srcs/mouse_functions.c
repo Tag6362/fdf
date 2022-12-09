@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 13:32:28 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 17:13:13 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 18:07:01 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,8 @@
 int	mouse_func(t_data *img, int button, int x, int y)
 {
 	char	*map_name;
-	int		***points;
 
 	map_name = ft_strdup(*img->map_name);
-	if (!img->has_changed)
-		ft_free_int_tab_3(*img->points, (*img->dims)[0], (*img->dims)[1]);
-	img->has_changed = 1;
 	clear_image(*img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 	if (button == 1)
@@ -31,9 +27,9 @@ int	mouse_func(t_data *img, int button, int x, int y)
 		(*img->dims)[2] += 2;
 	if (button == 5)
 		(*img->dims)[2] -= 2;
-	points = parsing(map_name, img->dims, img->angle, img->map);
-	img->points = &points;
-	plot_points(*img, points, *img->dims);
+	iso(*(img->points), *(img->dims), img->angle);
+	alt_adding(*(img->points), *(img->dims), *(img->map), glo_scale(0));
+	plot_points(*img, *(img->points), *img->dims);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 	render_texts(*img);
 	free(map_name);

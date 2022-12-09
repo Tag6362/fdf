@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 17:13:25 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 17:56:40 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ unsigned int	ft_atou_hexa(const char *str);
 /* Parsing 1 */
 int	***parsing(const char *map_name, int **dims, double angle, t_point ***map);
 double	glo_scale(int op);
+int	get_width(const char *path_to_map, int *width);
+int	get_height(const char *path_to_map, int *height);
 
 /* Parsing 2 */
 t_point	**map_making(char *path, int *dims, int fd);
@@ -94,7 +96,7 @@ void	iso(int ***pts, int *dims, double ang);
 void	alt_adding(int ***pts, int *dims, t_point **map, double scale);
 
 /* Centring */
-int	*find_dims(t_point **map, int height, int width, t_data *img);
+int	***init_tab(t_point ***map, int **dims, t_data *img, const char *map_name);
 
 /* Mouse Functions */
 int	mouse_func(t_data *img, int button, int x, int y);

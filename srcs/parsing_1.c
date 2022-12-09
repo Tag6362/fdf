@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 16:39:44 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 17:46:01 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ double	glo_scale(int op)
 	return (scale);
 }
 
-static int	get_width(const char *path_to_map, int *width)
+int	get_width(const char *path_to_map, int *width)
 {
 	int		fd;
 	char	*buff;
@@ -54,7 +54,7 @@ static int	get_width(const char *path_to_map, int *width)
 	return (1);
 }
 
-static int	get_height(const char *path_to_map, int *height)
+int	get_height(const char *path_to_map, int *height)
 {
 	int		fd;
 	char	*buff;
@@ -73,39 +73,6 @@ static int	get_height(const char *path_to_map, int *height)
 	free(buff);
 	close(fd);
 	return (1);
-}
-
-int	***parsing(const char *map_name, int **dims, double angle, t_point ***map)
-{
-	char	*path;
-	int 	***points;
-	int		*height;
-	int 	*width;
-
-	height = &((*dims)[0]);
-	width = &((*dims)[1]);
-	path = ft_strjoin("test_maps/", map_name);
-	ft_printf("Accessing %s...\n", path);
-	if (get_height(path, height) == -2 || get_width(path, width) == -2)
-		return (perror("Problem in file\n"), free(path), NULL);
-	ft_printf("%dx%d\n", *height, *width);
-	points = ft_calloc_int_tab_3(*height, *width, 2);
-	if (!points)
-		return (perror("Problem with creating tab"), free(path), NULL);
-
-		
-	int		to_define[3];
-	to_define[0] = 240; //START X
-	to_define[1] = 740;	//START Y
-	// (*dims)[2] = 20; //HYPOTHENUSE
-	points[0][0][0] = to_define[0];
-	points[0][0][1] = to_define[1];
-	iso(points, *dims, angle);
-	*map = map_making(path, *dims, 1);
-	free(path);
-	alt_adding(points, *dims, *map, glo_scale(0));
-	ft_printf("Parsing Done !\n");
-	return (points);
 }
 
 
