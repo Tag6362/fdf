@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/09 13:03:19 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/09 16:08:37 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					parsing_2 \
 					plotting_1 \
 					plotting_2 \
+					plotting_3 \
 					clear_image \
 					ft_atou_hexa \
 					events_window \

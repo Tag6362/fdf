@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:06:57 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 13:48:57 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 17:10:01 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	print_tab_3(int ***points, int height, int width)
 	i = 0;
 	while (i < height)
 	{
-		ft_printf("I %d /I\n", i);
 		j = 0;
 		while (j < width)
 		{

@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 10:37:39 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 13:15:29 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 16:15:43 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void render_texts(t_data img)
 {
-	ft_printf("Rendering Texts\n");
 	mlx_string_put(img.mlx, img.win, 0, 10, 0xFFFFFF, "===Keys===");
 	mlx_string_put(img.mlx, img.win, 0, 25, 0xFFFFFF, "ESC to quit");
 	mlx_string_put(img.mlx, img.win, 0, 40, 0xFFFFFF, "Scroll Up to Alt++");
