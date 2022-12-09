@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/09 10:42:51 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/09 13:03:19 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ DIRSRCS 		= srcs/
 SRCS 			=	$(addsuffix ${FTSRCS},	\
 					$(addprefix ${DIRSRCS},	\
 					main \
+					tests \
 					centring \
 					parsing_1 \
 					parsing_2 \

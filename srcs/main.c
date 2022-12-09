@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 10:54:53 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 13:09:39 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	init(char *map_name)
 	img.map = &map;
 	img.points = &points;
 	img.map_name = &map_name;
+	img.has_changed = 0;
 
 	dims = malloc(sizeof(int) * 3);
 	if (!dims)
@@ -53,8 +54,8 @@ int	init(char *map_name)
 	
 	create_window_and_image(&img);
 	points = parsing(map_name, &dims, img.angle, &map);
+	find_dims(map, dims[0], dims[1], &img);
 	plot_points(img, points, dims, map);
-	find_start_coords(map, dims[0], dims[1], img.angle);
 	image_and_hooks(img);
 	free(dims);
 	return (0);

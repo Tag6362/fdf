@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 14:03:38 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/07 15:01:28 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 13:19:05 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,12 @@ void	***ft_free_int_tab_3(int ***tab, int len_tab, int len_subtab)
 	int	i;
 
 	i = 0;
+	// ft_printf("TAB \n");
+	// print_tab_3(tab, len_tab, len_subtab);
+	// ft_printf("/TAB\n");
 	while (i < len_tab)
 	{
+		ft_printf("I %d /I\n", i);
 		ft_free_int_tab_2(tab[i], len_subtab);
 		tab[i] = NULL;
 		i++;

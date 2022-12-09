@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 10:52:41 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 15:37:58 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct	s_data {
 	int		****points;
 	int		**dims;
 	char	**map_name;
+	int		has_changed;
 }				t_data;
 
 
@@ -66,7 +67,7 @@ void	plot_line(t_data *img, int *p1, int *p2, unsigned int color);
 void plot_line_deg_1(t_data *img, int ***pts, int *dims, t_point **map);
 void plot_line_deg_2(t_data *img, int ***pts, int *dims, t_point **map);
 
-/* Memory Cleaning*/
+/* Memory Cleaning */
 void	**ft_free_strs(char **strs);
 void	**ft_free_int_tab_2(int **tab, int len_tab);
 void	***ft_free_int_tab_3(int ***tab, int len_tab, int len_subtab);
@@ -89,18 +90,22 @@ void	iso(int ***pts, int *dims, double ang);
 void	alt_adding(int ***pts, int *dims, t_point **map, double scale);
 
 /* Centring */
-int *find_start_coords(t_point **map, int height, int width, double angle);
+int	*find_dims(t_point **map, int height, int width, t_data *img);
 
 /* Mouse Functions */
-int up_alt(t_data img);
-int down_alt(t_data img);
-int zoom(t_data img);
+int up_alt(t_data *img);
+int down_alt(t_data *img);
+int zoom(t_data *img);
+int dezoom(t_data *img);
 
 /* Clear Image */
 void clear_image(t_data img);
 
 /* Window functions */
 void render_texts(t_data img);
+
+/* Tests */
+void	print_tab_3(int ***points, int height, int width);
 
 /* Merci a Danil de savoir lire*/
 #endif

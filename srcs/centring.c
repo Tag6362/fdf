@@ -6,14 +6,15 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:18:16 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/08 11:02:14 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 12:30:49 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int *find_start_coords(t_point **map, int height, int width, double angle)
+int	*find_dims(t_point **map, int height, int width, t_data *img)
 {
+	int dims[3];
 	int	x;
 	int	y;
 	int	hyp;
@@ -30,9 +31,10 @@ int *find_start_coords(t_point **map, int height, int width, double angle)
 		ratio = height / width;
 	else
 		ratio = width / height;
-	while (2 * width * (cos(angle) * hyp) < WINDOW_X - x)
+	while (2 * width * (cos(img->angle) * hyp) < WINDOW_X - x)
 	{
 		hyp++;	
 	}
+	(*(img->dims))[2] = hyp;
 	ft_printf("%dx%d with hyp %d\n", x, y, hyp);
 }

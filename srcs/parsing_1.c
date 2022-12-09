@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 10:53:54 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 14:31:49 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	get_height(const char *path_to_map, int *height)
 int	***parsing(const char *map_name, int **dims, double angle, t_point ***map)
 {
 	char	*path;
-	int		***points;
+	int 	***points;
 	int		*height;
 	int 	*width;
 
@@ -92,7 +92,8 @@ int	***parsing(const char *map_name, int **dims, double angle, t_point ***map)
 	points = ft_calloc_int_tab_3(*height, *width, 2);
 	if (!points)
 		return (perror("Problem with creating tab"), free(path), NULL);
-	
+
+		
 	int		to_define[3];
 	to_define[0] = 240; //START X
 	to_define[1] = 740;	//START Y
@@ -101,10 +102,46 @@ int	***parsing(const char *map_name, int **dims, double angle, t_point ***map)
 	points[0][0][1] = to_define[1];
 	iso(points, *dims, angle);
 	*map = map_making(path, *dims, 1);
+	free(path);
 	alt_adding(points, *dims, *map, glo_scale(0));
 	ft_printf("Parsing Done !\n");
-	return (free(path), points);
+	return (points);
 }
+
+
+// int	parsing(const char *map_name, int **dims, double angle, t_point ***map)
+// {
+// 	char	*path;
+// 	int		*height;
+// 	int 	*width;
+
+// 	height = &((*dims)[0]);
+// 	width = &((*dims)[1]);
+// 	path = ft_strjoin("test_maps/", map_name);
+// 	ft_printf("Accessing %s...\n", path);
+// 	if (get_height(path, height) == -2 || get_width(path, width) == -2)
+// 		return (perror("Problem in file\n"), -1);
+// 	ft_printf("%dx%d\n", *height, *width);
+// 	free(path);
+// 	points = ft_calloc_int_tab_3(*height, *width, 2);
+// 	if (!points)
+// 		return (perror("Problem with creating tab"), -1);
+// 	return (points);
+// }
+
+// int 
+// {
+// 	int		to_define[3];
+// 	to_define[0] = 240; //START X
+// 	to_define[1] = 740;	//START Y
+// 	// (*dims)[2] = 20; //HYPOTHENUSE
+// 	points[0][0][0] = to_define[0];
+// 	points[0][0][1] = to_define[1];
+// 	iso(points, *dims, angle);
+// 	*map = map_making(path, *dims, 1);
+// 	alt_adding(points, *dims, *map, glo_scale(0));
+// 	ft_printf("Parsing Done !\n");
+// }
 
 // int	main(void)
 // {
