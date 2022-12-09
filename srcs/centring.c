@@ -6,15 +6,69 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:18:16 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 17:56:52 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 19:10:01 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+static void	find_alt_aux(t_point **map, int **minmax, int *ind, int height)
+{
+	int weight;
+	int	i;
+	int	j;
+
+	i = ind[0];
+	j = ind[1];
+	weight = map[i][j].alt * (j + 1) * (height + 1 - i);
+	if (weight > (*minmax)[5])
+	{
+		(*minmax)[3] = i;
+		(*minmax)[4] = j;
+		(*minmax)[5] = weight;
+	}
+	else if (weight < (*minmax)[2])
+	{
+		(*minmax)[0] = i;
+		(*minmax)[1] = j;
+		(*minmax)[2] = weight;
+	}	
+}
+
+static int	**find_alt_max(t_point **map, int height, int width, t_data *img)
+{
+	int weight;
+	int	minmax[6];
+	int ind[2];
+
+	ind[0] = -1;
+	minmax[2] = map[0][0].alt * (height + 1);
+	minmax[5] = map[0][0].alt * (height + 1);
+	while (++ind[0] < height)
+	{
+		ind[1] = -1;
+		while (++ind[1] < width)
+			find_alt_aux(map, &minmax, ind, height);
+	}
+	return (minmax);
+}
+
 static int find_y_hyp(t_point **map, int height, int width, t_data *img)
 {
-	return (100000);
+	int	hyp;
+	int ratio;
+	
+	hyp = 1;
+	if (height > width)
+		ratio = 1 + height / width;
+	else
+		ratio = 1 + width / height;
+	while (ratio * width * (cos(PI / 2.0 - img->angle) * hyp)
+	< WINDOW_Y - img->y)
+	{
+		hyp++;	
+	}
+	return (hyp);
 }
 
 
