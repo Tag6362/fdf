@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/08 14:29:20 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 10:53:54 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 double	glo_scale(int op)
 {
-	static double scale = 10;
+	static double scale = 1;
 	
 	if (op == 1)
 	{
-		scale += 10;		
+		scale += 1;		
 		return (scale);
 	}
 	if (op == -1)
 	{
-		scale -= 10;
+		scale -= 1;
 		return (scale);
 	}
 	return (scale);
@@ -96,7 +96,7 @@ int	***parsing(const char *map_name, int **dims, double angle, t_point ***map)
 	int		to_define[3];
 	to_define[0] = 240; //START X
 	to_define[1] = 740;	//START Y
-	(*dims)[2] = 20; //HYPOTHENUSE
+	// (*dims)[2] = 20; //HYPOTHENUSE
 	points[0][0][0] = to_define[0];
 	points[0][0][1] = to_define[1];
 	iso(points, *dims, angle);

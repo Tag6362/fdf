@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/08 15:08:39 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 10:52:41 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct	s_data {
 /* ---PROTOS--- */
 /* Main */
 void	put_image_and_hooks(t_data img);
-t_data	*init(char *map_name);
+int		init(char *map_name);
 
 /* Events Window */
 int	key_listener(int keycode, t_data *img);
@@ -88,15 +88,19 @@ t_point	**map_making(char *path, int *dims, int fd);
 void	iso(int ***pts, int *dims, double ang);
 void	alt_adding(int ***pts, int *dims, t_point **map, double scale);
 
-
 /* Centring */
 int *find_start_coords(t_point **map, int height, int width, double angle);
 
 /* Mouse Functions */
 int up_alt(t_data img);
+int down_alt(t_data img);
+int zoom(t_data img);
 
 /* Clear Image */
 void clear_image(t_data img);
+
+/* Window functions */
+void render_texts(t_data img);
 
 /* Merci a Danil de savoir lire*/
 #endif

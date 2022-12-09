@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 13:05:37 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/08 15:00:03 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/09 10:55:47 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 int	key_listener(int keycode, t_data *img)
 {
 	if (keycode == 65307)
-		return (mlx_destroy_window(img->mlx, img->win), exit(0), 0);
+	{
+		mlx_destroy_window(img->mlx, img->win);
+		exit(0);
+		return (0);
+	}
 	return (0);
 }
 
@@ -28,14 +32,14 @@ int	on_destroy(t_data *img)
 
 int mouse_listener(int button, int x, int y, t_data *img)
 {
-	// if (button == 1) //Left Click
-	// 	zoom(void);
-	// if (button == 3) //Right Click
-	// 	dezoom(void);
+	if (button == 1) //Left Click
+		zoom(*img);
+	if (button == 3) //Right Click
+		dezoom(*img);
 	if (button == 4) // Scroll Up
 		up_alt(*img);
-	// if (button == 5) // Scroll Down
-	// 	down_alt(*img);
+	if (button == 5) // Scroll Down
+		down_alt(*img);
 	ft_printf("%d\n", button);
 	return (0);
 }
