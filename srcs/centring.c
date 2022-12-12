@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:18:16 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 19:10:01 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/12 14:51:25 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static void	find_alt_aux(t_point **map, int **minmax, int *ind, int height)
 
 	i = ind[0];
 	j = ind[1];
-	weight = map[i][j].alt * (j + 1) * (height + 1 - i);
+	if (map[i][j].alt)
+		weight = map[i][j].alt * (j + 1) * (height + 1 - i);
+	else
+		weight = (j + 1) * (height + 1 - i);
 	if (weight > (*minmax)[5])
 	{
 		(*minmax)[3] = i;
@@ -52,6 +55,10 @@ static int	**find_alt_max(t_point **map, int height, int width, t_data *img)
 	}
 	return (minmax);
 }
+
+/*
+TODO Find start Y using the two functions above
+*/
 
 static int find_y_hyp(t_point **map, int height, int width, t_data *img)
 {

@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 20:38:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 17:46:01 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/12 14:45:29 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ double	glo_scale(int op)
 	
 	if (op == 1)
 	{
-		scale += 1;		
+		scale *= 1.2;		
 		return (scale);
 	}
 	if (op == -1)
 	{
-		scale -= 1;
+		scale *= 0.8;
 		return (scale);
 	}
 	return (scale);
