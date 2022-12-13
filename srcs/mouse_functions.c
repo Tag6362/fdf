@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 13:32:28 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/12 15:10:31 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/13 17:43:15 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	mouse_func(t_data *img, int button, int x, int y)
 	map_name = ft_strdup(*img->map_name);
 	clear_image(*img);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
+	ft_printf("x : %d, y : %d\n", img->x, img->y);
+	ft_printf("hyp : %d\n", (*img->dims)[2]);
 	if (button == 1)
 		glo_scale(1);
 	if (button == 3)
