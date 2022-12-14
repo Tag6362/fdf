@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:18:16 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/12 14:51:25 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/14 15:25:00 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int find_y_hyp(t_point **map, int height, int width, t_data *img)
 	else
 		ratio = 1 + width / height;
 	while (ratio * width * (cos(PI / 2.0 - img->angle) * hyp)
-	< WINDOW_Y - img->y)
+	< img->y)
 	{
 		hyp++;	
 	}
