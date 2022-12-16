@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/16 15:33:33 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/16 17:01:28 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -128,5 +128,14 @@ all_fclean: fclean libft_fclean mlx_clean
 
 all_re: mlx_re libft_re fclean all
 	@echo "${CYAN}Re-ed FdF${NC}"
+
+#----------------------------MISC
+
+norminette: 
+	norminette srcs
+safe:
+	git add .
+	git commit -m "AUTOSAFEGARD"
+	git push
 
 .PHONY: all clean fclean re libft_re libft_all libft_fclean libft_clean libft_re all_re all_fclean all_clean mlx_all mlx_clean mlx_re 

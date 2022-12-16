@@ -6,58 +6,11 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:18:16 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/16 16:55:13 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 16:59:58 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-static void	find_alt_aux(t_point **map, int **minmax, int *ind, int height)
-{
-	int	weight;
-	int	i;
-	int	j;
-
-	i = ind[0];
-	j = ind[1];
-	if (map[i][j].alt)
-		weight = map[i][j].alt * (j + 1) * (height + 1 - i);
-	else
-		weight = (j + 1) * (height + 1 - i);
-	if (weight > (*minmax)[5])
-	{
-		(*minmax)[3] = i;
-		(*minmax)[4] = j;
-		(*minmax)[5] = weight;
-	}
-	else if (weight < (*minmax)[2])
-	{
-		(*minmax)[0] = i;
-		(*minmax)[1] = j;
-		(*minmax)[2] = weight;
-	}	
-}
-
-static int	**find_alt_max(t_point **map, int height, int width)
-{
-	int	**minmax;
-	int	ind[2];
-
-	ind[0] = -1;
-	minmax = NULL;
-	*minmax = malloc(sizeof(int) * 6);
-	if (!(*minmax))
-		return (NULL);
-	(*minmax)[2] = map[0][0].alt * (height + 1);
-	(*minmax)[5] = map[0][0].alt * (height + 1);
-	while (++ind[0] < height)
-	{
-		ind[1] = -1;
-		while (++ind[1] < width)
-			find_alt_aux(map, minmax, ind, height);
-	}
-	return (minmax);
-}
 
 static int	find_y_hyp(int height, int width, t_data *img)
 {
