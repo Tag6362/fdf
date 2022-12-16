@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:18:16 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/16 13:41:57 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 16:55:13 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	find_alt_aux(t_point **map, int **minmax, int *ind, int height)
 {
-	int weight;
+	int	weight;
 	int	i;
 	int	j;
 
@@ -41,7 +41,7 @@ static void	find_alt_aux(t_point **map, int **minmax, int *ind, int height)
 static int	**find_alt_max(t_point **map, int height, int width)
 {
 	int	**minmax;
-	int ind[2];
+	int	ind[2];
 
 	ind[0] = -1;
 	minmax = NULL;
@@ -59,30 +59,29 @@ static int	**find_alt_max(t_point **map, int height, int width)
 	return (minmax);
 }
 
-static int find_y_hyp(int height, int width, t_data *img)
+static int	find_y_hyp(int height, int width, t_data *img)
 {
 	int	hyp;
-	int ratio;
-	
+	int	ratio;
+
 	hyp = 1;
 	if (height > width)
 		ratio = 1 + height / width;
 	else
 		ratio = 1 + width / height;
 	while (ratio * width * (cos(PI / 2.0 - img->angle) * hyp)
-	< img->y)
+		< img->y)
 	{
-		hyp++;	
+		hyp++;
 	}
 	return (hyp);
 }
 
-
-static int find_x_hyp(int height, int width, t_data *img, int *dims)
+static int	find_x_hyp(int height, int width, t_data *img, int *dims)
 {
 	int	hyp;
-	int ratio;
-	
+	int	ratio;
+
 	hyp = 1;
 	if (height > width)
 		ratio = 1 + height / width;
@@ -90,7 +89,7 @@ static int find_x_hyp(int height, int width, t_data *img, int *dims)
 		ratio = 1 + width / height;
 	while (ratio * width * (cos(img->angle) * hyp) < dims[3] - img->x)
 	{
-		hyp++;	
+		hyp++;
 	}
 	return (hyp);
 }
@@ -98,9 +97,9 @@ static int find_x_hyp(int height, int width, t_data *img, int *dims)
 int	***init_tab(t_point ***map, int **dims, t_data *img, const char *map_name)
 {
 	char	*path;
-	int 	***points;
+	int		***points;
 	int		*height;
-	int 	*width;
+	int		*width;
 	int		hyp;
 
 	height = &((*dims)[0]);
@@ -122,5 +121,4 @@ int	***init_tab(t_point ***map, int **dims, t_data *img, const char *map_name)
 	points[0][0][0] = img->x;
 	points[0][0][1] = img->y;
 	return (points);
-	// ft_printf("%dx%d with hyp %d\n", x, y, hyp);
 }

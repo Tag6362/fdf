@@ -6,18 +6,20 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 10:37:39 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 16:15:43 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 16:47:31 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void render_texts(t_data img)
+void	render_texts(t_data img)
 {
 	mlx_string_put(img.mlx, img.win, 0, 10, 0xFFFFFF, "===Keys===");
 	mlx_string_put(img.mlx, img.win, 0, 25, 0xFFFFFF, "ESC to quit");
-	mlx_string_put(img.mlx, img.win, 0, 40, 0xFFFFFF, "Scroll Up to Alt++");
-	mlx_string_put(img.mlx, img.win, 0, 55, 0xFFFFFF, "Scroll Down to Alt--");
-	mlx_string_put(img.mlx, img.win, 0, 70, 0xFFFFFF, "Left Click to Zoom");
-	mlx_string_put(img.mlx, img.win, 0, 85, 0xFFFFFF, "Right Click to Dezoom");
+	mlx_string_put(img.mlx, img.win, 0, 40, 0xFFFFFF, "Scroll change zoom");
+	mlx_string_put(img.mlx, img.win, 0, 55, 0xFFFFFF, "L/R Click to Move");
+	mlx_string_put(img.mlx, img.win, 0, 70, 0xFFFFFF, "I/O to change altitude");
+	mlx_string_put(img.mlx, img.win, 0, 70, 0xFFFFFF, "K/L to change rotation");
+	mlx_string_put(img.mlx, img.win, 0, 70, 0xFFFFFF, "</> to change color");
+	mlx_string_put(img.mlx, img.win, 0, 85, 0xFFFFFF, "WASD to keyboard move");
 }

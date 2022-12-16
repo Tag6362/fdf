@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/16 14:33:19 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 16:21:32 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,15 +111,17 @@ void render_texts(t_data img);
 /* Tests */
 void	print_tab_3(int ***points, int height, int width);
 
-/* Moving */
-void move_up(t_data *img);
-void move_left(t_data *img);
-void move_down(t_data *img);
-void move_right(t_data *img);
+/* Keyboard transforms */
+void keyboard_move(t_data *img, int keycode);
+void keyboard_alt(t_data *img, int keycode);
+void keyboard_perspective(t_data *img, int keycode);
+void	keyboard_color(t_data *img, int keycode);
 
-/* Alt Events */
-void up_alt(t_data *img);
-void down_alt(t_data *img);
+/* 
+Merci a Danil de savoir lire
 
-/* Merci a Danil de savoir lire*/
+Le fait que scroller trop vers le bas retourne la map est connu, et
+volontairement laisse en tant que feature
+
+*/
 #endif

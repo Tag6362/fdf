@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 14:47:33 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/16 13:35:51 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 16:49:37 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static int	corr_line(int *a, int *b, int *dims)
 
 static void	plot_points_aux(t_data img, int ***pts, int *ind, int *dims)
 {
-	int	i;
-	int	j;
-	t_point **map;
+	int		i;
+	int		j;
+	t_point	**map;
 
 	i = ind[0];
 	j = ind[1];
@@ -42,7 +42,7 @@ static void	plot_points_aux(t_data img, int ***pts, int *ind, int *dims)
 	{
 		if (map[i][j].color == map[i + 1][j].color)
 			plot_line(&img, pts[i][j], pts[i + 1][j], map[i][j].color);
-		else 
+		else
 			plot_line_deg_2(&img, pts, ind, map);
 	}	
 }
@@ -51,7 +51,7 @@ void	plot_points(t_data img, int ***pts, int *dims)
 {
 	int	i;
 	int	j;
-	int ind[2];
+	int	ind[2];
 
 	i = 0;
 	while (i < dims[0])

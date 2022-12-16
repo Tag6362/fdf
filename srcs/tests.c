@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:06:57 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 17:10:01 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 16:48:34 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,28 @@
 
 void	line_test(int *p1, int *p2, t_data *img)
 {
-
-    p1[0] = 400;
-    p1[1] = 400;
+	p1[0] = 400;
+	p1[1] = 400;
 	p2[0] = 10;
 	p2[1] = 10;
 	while (p2[0] <= 800)
 	{
-        plot_line(img, p1, p2, 0xFFFFFF);
+		plot_line(img, p1, p2, 0xFFFFFF);
 		++(p2[0]);
 	}
 	while (p2[1] <= 800)
 	{
-        plot_line(img, p1, p2, 0xFFFFFF);
+		plot_line(img, p1, p2, 0xFFFFFF);
 		++(p2[1]);
 	}
 	while (p2[0] >= 10)
 	{
-        plot_line(img, p1, p2, 0xFFFFFF);
+		plot_line(img, p1, p2, 0xFFFFFF);
 		--(p2[0]);
 	}
 	while (p2[1] >= 10)
 	{
-        plot_line(img, p1, p2, 0xFFFFFF);
+		plot_line(img, p1, p2, 0xFFFFFF);
 		--(p2[1]);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:49:44 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 16:09:12 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 16:53:33 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	mlx_spp(t_data *data, int x, int y, int color)
 {
-	char *dst;
+	char	*dst;
 
 	dst = data->addr + (y * data->llen + x * (data->bpp / 8));
 	*(unsigned int *)dst = color;

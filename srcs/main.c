@@ -6,13 +6,13 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/16 14:05:25 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 16:54:22 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static	void create_window_and_image(t_data *img, int *dims)
+static void	create_window_and_image(t_data *img, int *dims)
 {
 	img->mlx = mlx_init();
 	mlx_get_screen_size(img->mlx, &(dims[3]), &(dims[4]));
@@ -21,7 +21,7 @@ static	void create_window_and_image(t_data *img, int *dims)
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->llen, &img->end);
 }
 
-static void image_and_hooks(t_data img)
+static void	image_and_hooks(t_data img)
 {
 	mlx_put_image_to_window(img.mlx, img.win, img.img, 0, 0);
 	render_texts(img);
@@ -37,7 +37,7 @@ int	init(char *map_name)
 	t_point	**map;
 	int		***points;
 	int		*dims;
-	
+
 	img.angle = (30 * PI) / 180;
 	img.dims = &dims;
 	img.map = &map;
@@ -56,7 +56,7 @@ int	init(char *map_name)
 	return (0);
 }
 
-int main (int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac > 1)
 		init(av[1]);

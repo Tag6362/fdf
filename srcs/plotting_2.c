@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 11:14:31 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 17:15:51 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 16:52:00 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	bres_plot_high_dg(t_data *img, int *p1, int *p2, unsigned int color)
 	}
 }
 
-void plot_line_deg_1(t_data *img, int ***pts, int *dims, t_point **map)
+void	plot_line_deg_1(t_data *img, int ***pts, int *dims, t_point **map)
 {
 	int				i;
 	int				j;
@@ -93,7 +93,7 @@ void plot_line_deg_1(t_data *img, int ***pts, int *dims, t_point **map)
 	}
 }
 
-void plot_line_deg_2(t_data *img, int ***pts, int *dims, t_point **map)
+void	plot_line_deg_2(t_data *img, int ***pts, int *dims, t_point **map)
 {
 	int				i;
 	int				j;

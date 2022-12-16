@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/16 14:33:41 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/16 15:33:33 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,21 +18,19 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					main \
 					tests \
 					clear \
-					moving \
 					centring \
 					parsing_1 \
 					parsing_2 \
 					plotting_1 \
 					plotting_2 \
 					plotting_3 \
-					alt_events \
-					map_creation \
 					ft_atou_hexa \
 					events_window \
 					mouse_functions \
 					memory_cleaning \
 					window_functions \
 					memory_allocation \
+					keyboard_transforms \
 					))
 INCLUDES		= -Iincludes
 LIBFTDIR		= libft
