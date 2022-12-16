@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/16 18:51:23 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 19:27:33 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,20 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <math.h>
-# define PI 3.142857
+# define PI 3.141592
 # define ON_KEYDOWN 2
 # define ON_MOUSEDOWN 4
 # define ON_DESTROY 17
 # define NO_MASK 0L
-# define KEYPRESS_MASK 1L<<0
-# define BUTTONPRESS_MASK 1l<<2
-# define WINDOW_X 1920
-# define WINDOW_Y 1080
+# define KEYPRESS_MASK 1L
+# define BUTTONPRESS_MASK 4L
 
-typedef struct	s_point {
+typedef struct s_point {
 	int				alt;
 	unsigned int	color;
 }				t_point;
 
-typedef struct	s_data {
+typedef struct s_data {
 	void	*img;
 	void	*addr;
 	int		bpp;
@@ -47,7 +45,6 @@ typedef struct	s_data {
 	int		x;
 	int		y;
 }				t_data;
-
 
 /* ---PROTOS--- */
 /* Main */
@@ -78,16 +75,17 @@ void	**free_map(t_point **map, int height);
 
 /* Memory Allocation */
 int		***ft_calloc_int_tab_3(int len_tab, int len_subtab, int len_subsubtab);
-t_point **map_malloc(int height, int width);
+t_point	**map_malloc(int height, int width);
 
 /* Atoul */
 unsigned int	ft_atou_hexa(const char *str);
 
 /* Parsing 1 */
-int		***parsing(const char *map_name, int **dims, double angle, t_point ***map);
-double	glo_scale(int op);
-int		get_width(const char *path_to_map, int *width);
-int		get_height(const char *path_to_map, int *height);
+int				***parsing(const char *map_n, int **dims, double angle,
+			t_point ***map);
+double			glo_scale(int op);
+int				get_width(const char *path_to_map, int *width);
+int				get_height(const char *path_to_map, int *height);
 
 /* Parsing 2 */
 t_point	**map_making(const char *path, int *dims, int fd);
@@ -98,7 +96,7 @@ void	alt_adding(int ***pts, int *dims, t_point **map, double scale);
 int	***init_tab(t_point ***map, int **dims, t_data *img, const char *map_name);
 
 /* Mouse Functions */
-int	mouse_func(t_data *img, int button, int x, int y);
+int		mouse_func(t_data *img, int button, int x, int y);
 
 /* Clear */
 void	clear_image(t_data img, int *dims);
@@ -106,7 +104,7 @@ void	end_of_program(t_data *img);
 void	free_win_img(t_data *img);
 
 /* Window functions */
-void render_texts(t_data img);
+void	render_texts(t_data img);
 
 /* Tests */
 void	print_tab_3(int ***points, int height, int width);
