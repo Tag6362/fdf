@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:20:31 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/13 17:51:47 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 18:20:34 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	pixel_maker(char *info, t_point *point)
 	ft_free_strs(tmp);
 }
 
-t_point	**map_making(char *path, int *dims, int fd)
+t_point	**map_making(const char *path, int *dims, int fd)
 {
 	int		i;
 	int		j;

@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/16 16:21:32 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 18:51:23 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ typedef struct	s_data {
 	int		****points;
 	int		**dims;
 	char	**map_name;
-	int		has_changed;
 	int		x;
 	int		y;
 }				t_data;
@@ -53,7 +52,7 @@ typedef struct	s_data {
 /* ---PROTOS--- */
 /* Main */
 void	put_image_and_hooks(t_data img);
-int		init(char *map_name);
+// int		init(char *map_name);
 
 /* Events Window */
 int		key_listener(int keycode, t_data *img);
@@ -91,7 +90,7 @@ int		get_width(const char *path_to_map, int *width);
 int		get_height(const char *path_to_map, int *height);
 
 /* Parsing 2 */
-t_point	**map_making(char *path, int *dims, int fd);
+t_point	**map_making(const char *path, int *dims, int fd);
 void	iso(int ***pts, int *dims, double ang);
 void	alt_adding(int ***pts, int *dims, t_point **map, double scale);
 
@@ -104,6 +103,7 @@ int	mouse_func(t_data *img, int button, int x, int y);
 /* Clear */
 void	clear_image(t_data img, int *dims);
 void	end_of_program(t_data *img);
+void	free_win_img(t_data *img);
 
 /* Window functions */
 void render_texts(t_data img);
@@ -112,9 +112,9 @@ void render_texts(t_data img);
 void	print_tab_3(int ***points, int height, int width);
 
 /* Keyboard transforms */
-void keyboard_move(t_data *img, int keycode);
-void keyboard_alt(t_data *img, int keycode);
-void keyboard_perspective(t_data *img, int keycode);
+void	keyboard_move(t_data *img, int keycode);
+void	keyboard_alt(t_data *img, int keycode);
+void	keyboard_perspective(t_data *img, int keycode);
 void	keyboard_color(t_data *img, int keycode);
 
 /* 
