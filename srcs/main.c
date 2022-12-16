@@ -6,17 +6,18 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 15:53:46 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/09 18:07:41 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 14:05:25 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static	void create_window_and_image(t_data *img)
+static	void create_window_and_image(t_data *img, int *dims)
 {
 	img->mlx = mlx_init();
-	img->win = mlx_new_window(img->mlx, WINDOW_X, WINDOW_Y, "C'est court");
-	img->img = mlx_new_image(img->mlx, WINDOW_X, WINDOW_Y);
+	mlx_get_screen_size(img->mlx, &(dims[3]), &(dims[4]));
+	img->win = mlx_new_window(img->mlx, dims[3], dims[4], "FDF Tgernez");
+	img->img = mlx_new_image(img->mlx, dims[3], dims[4]);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->llen, &img->end);
 }
 
@@ -43,23 +44,15 @@ int	init(char *map_name)
 	img.points = &points;
 	img.map_name = &map_name;
 	img.has_changed = 0;
-
-	dims = malloc(sizeof(int) * 3);
+	dims = malloc(sizeof(int) * 5);
 	if (!dims)
 		return (-1);
-	//TMP
-	// dims[2] = 10;
-	//\TMP
-
-	
-	create_window_and_image(&img);
-	
+	create_window_and_image(&img, dims);
 	points = init_tab(&map, &dims, &img, map_name);
 	iso(points, dims, img.angle);
 	alt_adding(points, dims, map, glo_scale(0));
 	plot_points(img, points, dims);
 	image_and_hooks(img);
-	free(dims);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/09 17:29:14 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/16 14:33:41 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,13 +17,15 @@ SRCS 			=	$(addsuffix ${FTSRCS},	\
 					$(addprefix ${DIRSRCS},	\
 					main \
 					tests \
+					clear \
+					moving \
 					centring \
 					parsing_1 \
 					parsing_2 \
 					plotting_1 \
 					plotting_2 \
 					plotting_3 \
-					clear_image \
+					alt_events \
 					map_creation \
 					ft_atou_hexa \
 					events_window \

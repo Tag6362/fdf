@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear_image.c                                      :+:      :+:    :+:   */
+/*   clear.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:48:22 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/13 17:25:48 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 14:27:19 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void clear_image(t_data img)
+void	clear_image(t_data img, int *dims)
 {
 	int	p1[2];
 	int	p2[2];
@@ -21,13 +21,21 @@ void clear_image(t_data img)
 	i = 0;
 	p1[0] = 0;
 	p1[1] = 0;
-	p2[0] = WINDOW_X;
+	p2[0] = dims[3];
 	p2[1] = 0;
-	while (i < WINDOW_Y)
+	while (i < dims[4])
 	{
 		plot_line(&img, p1, p2, 0x000000);
 		p1[1]++;
 		p2[1]++;
 		i++;
 	}
+}
+
+void	end_of_program(t_data *img)
+{
+	mlx_destroy_window(img->mlx, img->win);
+	ft_free_int_tab_3(*(img->points), (*(img->dims))[0], (*(img->dims))[1]);
+	free(*(img->dims));
+	exit(0);
 }

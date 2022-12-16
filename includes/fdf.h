@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/13 17:28:01 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/16 14:33:19 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	put_image_and_hooks(t_data img);
 int		init(char *map_name);
 
 /* Events Window */
-int	key_listener(int keycode, t_data *img);
-int	on_destroy(t_data *img);
-int mouse_listener(int button, int x, int y, t_data *img);
+int		key_listener(int keycode, t_data *img);
+int		on_destroy(t_data *img);
+int		mouse_listener(int button, int x, int y, t_data *img);
 
 /* Plotting 1 */
 void	plot_points(t_data img, int ***pts, int *dims);
@@ -85,10 +85,10 @@ t_point **map_malloc(int height, int width);
 unsigned int	ft_atou_hexa(const char *str);
 
 /* Parsing 1 */
-int	***parsing(const char *map_name, int **dims, double angle, t_point ***map);
+int		***parsing(const char *map_name, int **dims, double angle, t_point ***map);
 double	glo_scale(int op);
-int	get_width(const char *path_to_map, int *width);
-int	get_height(const char *path_to_map, int *height);
+int		get_width(const char *path_to_map, int *width);
+int		get_height(const char *path_to_map, int *height);
 
 /* Parsing 2 */
 t_point	**map_making(char *path, int *dims, int fd);
@@ -101,14 +101,25 @@ int	***init_tab(t_point ***map, int **dims, t_data *img, const char *map_name);
 /* Mouse Functions */
 int	mouse_func(t_data *img, int button, int x, int y);
 
-/* Clear Image */
-void clear_image(t_data img);
+/* Clear */
+void	clear_image(t_data img, int *dims);
+void	end_of_program(t_data *img);
 
 /* Window functions */
 void render_texts(t_data img);
 
 /* Tests */
 void	print_tab_3(int ***points, int height, int width);
+
+/* Moving */
+void move_up(t_data *img);
+void move_left(t_data *img);
+void move_down(t_data *img);
+void move_right(t_data *img);
+
+/* Alt Events */
+void up_alt(t_data *img);
+void down_alt(t_data *img);
 
 /* Merci a Danil de savoir lire*/
 #endif
