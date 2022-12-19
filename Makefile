@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/16 17:01:28 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/19 19:18:34 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,10 +37,9 @@ LIBFTDIR		= libft
 LIBFTLIB		= -lft
 MLXDIR			= minilibx
 MLXLIB			= -lmlx
-XLIBS			= -lX11 -lXext 
+XLIBS			= -lX11 -lXext
 CC				= clang
-FLAGS			= -Wall -Wextra
-#------------------------------ADD -WERROR
+FLAGS			= -Wall -Wextra -Werror
 OBJS			= ${SRCS:.c=.o}
 RM				= rm -rf
 RED				= \033[1;31m
@@ -58,7 +57,7 @@ all: ${NAME}
 	@echo '_______________________________________________________          '
 	@echo ' __/\\\\\\\\\\\\\\\__/\\\\\\\\\\\\_____/\\\\\\\\\\\\\\\_    	    '
 	@echo '  _\/\\\///////////__\/\\\////////\\\__\/\\\///////////__        '
-	@echo '   _\/\\\_____________\/\\\______\//\\\_\/\\\_____________       '	
+	@echo '   _\/\\\_____________\/\\\______\//\\\_\/\\\_____________       '
 	@echo '    _\/\\\\\\\\\\\_____\/\\\_______\/\\\_\/\\\\\\\\\\\_____      '
 	@echo '     _\/\\\///////______\/\\\_______\/\\\_\/\\\///////______     '
 	@echo '      _\/\\\_____________\/\\\_______\/\\\_\/\\\_____________    '
@@ -73,7 +72,7 @@ ${NAME}: ${OBJS} ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
 	@${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o $@ -g3
 
 sanitize: ${OBJS} ${LIBFTDIR}/libft.a ${MLXDIR}/libmlx.a
-	@${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o fdf -g3 -fsanitize=address 
+	@${CC} ${OBJS} ${INCLUDES} ${XLIBS} -L${MLXDIR} ${MLXLIB} -L${LIBFTDIR} ${LIBFTLIB} -lm -o fdf -g3 -fsanitize=address
 
 re_san: fclean sanitize
 
@@ -131,11 +130,11 @@ all_re: mlx_re libft_re fclean all
 
 #----------------------------MISC
 
-norminette: 
+norminette:
 	norminette srcs
 safe:
 	git add .
 	git commit -m "AUTOSAFEGARD"
 	git push
 
-.PHONY: all clean fclean re libft_re libft_all libft_fclean libft_clean libft_re all_re all_fclean all_clean mlx_all mlx_clean mlx_re 
+.PHONY: all clean fclean re libft_re libft_all libft_fclean libft_clean libft_re all_re all_fclean all_clean mlx_all mlx_clean mlx_re
