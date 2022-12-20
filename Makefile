@@ -6,7 +6,7 @@
 #    By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/19 17:41:24 by tgernez           #+#    #+#              #
-#    Updated: 2022/12/19 19:18:34 by tgernez          ###   ########.fr        #
+#    Updated: 2022/12/20 10:38:41 by tgernez          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ MLXDIR			= minilibx
 MLXLIB			= -lmlx
 XLIBS			= -lX11 -lXext
 CC				= clang
-FLAGS			= -Wall -Wextra -Werror
+#--------------------------------------ADD WERROR
+FLAGS			= -Wall -Wextra
 OBJS			= ${SRCS:.c=.o}
 RM				= rm -rf
 RED				= \033[1;31m

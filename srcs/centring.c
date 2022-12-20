@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 15:18:16 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/16 18:40:55 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/20 11:43:59 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ int	***init_tab(t_point ***map, int **dims, t_data *img, const char *map_name)
 	if (!(points && *map))
 		return (perror("Problem in map/tab"), end_of_program(img), NULL);
 	img->x = (*dims)[3] * (1.0 / 8.0);
-	img->y = (*dims)[4] * (7.0 / 8.0);
+	img->y = (*dims)[4] * (5.0 / 8.0);
 	(*(img->dims))[2] = find_x_hyp(*height, *width, img, *dims);
 	hyp = find_y_hyp(*height, *width, img);
-	if (hyp < (*(img->dims))[2])
+	if (hyp <= 3 && (*(img->dims))[2] <= 3)
+		(*(img->dims))[2] = 3;
+	else if (hyp < (*(img->dims))[2])
 		(*(img->dims))[2] = hyp;
 	points[0][0][0] = img->x;
 	points[0][0][1] = img->y;

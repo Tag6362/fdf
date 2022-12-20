@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/19 16:15:45 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/19 19:15:39 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/20 10:27:29 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void			free_win_img(t_data *img);
 void			render_texts(t_data img);
 
 /* Tests */
-void			print_tab_3(int ***points, int height, int width);
+void			ft_print_tab_3(int ***points, int height, int width);
 
 /* Keyboard transforms */
 void			keyboard_move(t_data *img, int keycode);

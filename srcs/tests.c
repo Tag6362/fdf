@@ -6,7 +6,7 @@
 /*   By: tgernez <tgernez@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:06:57 by tgernez           #+#    #+#             */
-/*   Updated: 2022/12/16 16:48:34 by tgernez          ###   ########.fr       */
+/*   Updated: 2022/12/20 10:27:21 by tgernez          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	line_test(int *p1, int *p2, t_data *img)
 	}
 }
 
-void	print_tab_3(int ***points, int height, int width)
+void	ft_print_tab_3(int ***points, int height, int width)
 {
 	int	i;
 	int	j;
